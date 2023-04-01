@@ -8,9 +8,11 @@ import Menu from '@mui/material/Menu'
 import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import { Button as AuthButton } from 'design-system'
+import { Link, Navigate } from 'react-router-dom'
 
 const pages = ['Homme', 'Femme', 'Enfant']
 const settings = ['Profile', 'Logout']
@@ -99,8 +101,10 @@ function NavBar() {
               </Tooltip>
             ) : (
               <div>
-                <AuthButton variant="contained" buttonText="se connecter" />
-                <AuthButton variant="outlined" buttonText="s'inscrire" />
+                <Stack spacing={7} direction="row" mr="150px">
+                  <Link to="/signin"><AuthButton variant="contained" buttonText="se connecter" /></Link>
+                  <Link to="/signup"><AuthButton variant="outlained" buttonText="s'inscrire" /></Link>
+                </Stack>
               </div>
             )}
             <Menu
