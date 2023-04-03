@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { TextField } from '@mui/material'
@@ -39,8 +38,7 @@ function ModalSignin() {
         <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
           Se connecter
         </Typography>
-        <TextField margin="normal" type="text" variant="outlined" placeholder="Name" />
-        {' '}
+        <TextField margin="normal" type="text" variant="outlined" placeholder="Name" />{' '}
         <TextField margin="normal" type="password" variant="outlined" placeholder="Password" />
         <Button
           sx={{
@@ -50,11 +48,9 @@ function ModalSignin() {
           variant="contained"
         >
           Se connecter
-
         </Button>
       </Box>
       {/* </Modal> */}
-
     </>
   )
 }

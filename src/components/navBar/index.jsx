@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import { Button as AuthButton } from 'design-system'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const pages = ['Homme', 'Femme', 'Enfant']
 const settings = ['Profile', 'Logout']
@@ -102,8 +102,12 @@ function NavBar() {
             ) : (
               <div>
                 <Stack spacing={7} direction="row" mr="150px">
-                  <Link to="/signin"><AuthButton variant="contained" buttonText="se connecter" /></Link>
-                  <Link to="/signup"><AuthButton variant="outlained" buttonText="s'inscrire" /></Link>
+                  <Link to="/signin">
+                    <AuthButton variant="contained" buttonText="se connecter" />
+                  </Link>
+                  <Link to="/signup">
+                    <AuthButton variant="outlained" buttonText="s'inscrire" />
+                  </Link>
                 </Stack>
               </div>
             )}
