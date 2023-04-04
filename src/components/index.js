@@ -1,5 +1,6 @@
 export { default as CardModel } from './card'
 export { default as CardDetails } from './carddDetails'
-export { default as ModalSignin } from './modelsignin'
-export { default as ModalSignup } from './modelsignup'
+export { default as ModalSignin } from './modalSignin'
+export { default as ModalSignup } from './modalSignup'
 export { default as NavBar } from './navBar'
+export { default as Modal } from './modal'

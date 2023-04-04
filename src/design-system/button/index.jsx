@@ -1,9 +1,15 @@
-import React from 'react'
 import Button from '@mui/material/Button'
+import React from 'react'
 
-function ButtonEl({ variant, buttonText, disabled = false }) {
+function ButtonEl({ variant, buttonText, disabled = false, onClick, type }) {
   return (
-    <Button variant={variant} disabled={disabled}>
+    <Button
+      variant={variant}
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
+      sx={{ boxShadow: 'none' }}
+    >
       {buttonText}
     </Button>
   )

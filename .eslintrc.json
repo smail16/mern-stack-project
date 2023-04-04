@@ -3,27 +3,44 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "prettier"
+  ],
   "overrides": [],
   "parserOptions": {
+    "project": "./jsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks"],
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["src"]
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   },
+  "plugins": ["react", "react-hooks", "import", "prettier"],
   "rules": {
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-nested-ternary": "off",
+    "object-curly-newline": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "no-unused-vars": "off",
     "semi": ["error", "never"],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/jsx-boolean-value": "off"
   }
 }
