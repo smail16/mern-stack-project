@@ -11,8 +11,11 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: '',
+      fullName: '',
+      email:'',
       password: '',
+      phone:'',
+      address:'',
     },
   })
 
@@ -20,21 +23,36 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
   const onError = (data) => console.log(data)
 
   return (
-    <Modal title="Se connecter" isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
+    <Modal title="S'inscrire" isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field, fieldState }) => (
-            <TextInput
-              type="email"
-              label="email"
-              value={field.value}
-              onChange={field.onChange}
-              errorText={fieldState.error?.message}
-            />
-          )}
-        />
+          <Controller
+            name="fullName"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                type="text"
+                label="Nom et Prénom"
+                value={field.value}
+                onChange={field.onChange}
+                errorText={fieldState.error?.message}
+              />
+            )}
+          />
+        <Box mt={2}>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+               type="email"
+                label="Email"
+                value={field.value}
+                onChange={field.onChange}
+                errorText={fieldState.error?.message}
+             />
+           )}
+          />
+        </Box>
         <Box mt={2}>
           <Controller
             name="password"
@@ -42,7 +60,7 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
             render={({ field, fieldState }) => (
               <TextInput
                 type="password"
-                label="mot de passe"
+                label="Mot de passe"
                 value={field.value}
                 onChange={field.onChange}
                 errorText={fieldState.error?.message}
@@ -50,13 +68,44 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
             )}
           />
         </Box>
+        <Box mt={2}>
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                type="text"
+                label="Téléphone"
+                value={field.value}
+                onChange={field.onChange}
+                errorText={fieldState.error?.message}
+              />
+            )}
+          />
+        </Box>
+        <Box mt={2}>
+          <Controller
+            name="address"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                type="text"
+                label="Adresse"
+                value={field.value}
+                onChange={field.onChange}
+                errorText={fieldState.error?.message}
+              />
+            )}
+          />
+        </Box>
+    
 
         <Box mt={2} display="flex" justifyContent="center">
-          <Button type="submit" buttonText="se connecter" variant="contained" />
+          <Button type="submit" buttonText="s'inscrire" variant="contained" />
         </Box>
-        <Typography variant="body1" align="center" mt={2}>
+        {/* <Typography variant="body1" align="center" mt={2}>
           Mot de passe oublié ?
-        </Typography>
+        </Typography> */}
       </form>
     </Modal>
   )

@@ -15,6 +15,8 @@ import React, { useState } from 'react'
 import { IoIosMenu } from 'react-icons/io'
 
 import ModalSignin from '../modalSignin'
+import ModalSignup from '../modalSignup'
+
 
 const pages = ['Homme', 'Femme', 'Enfant']
 const settings = ['Profile', 'Logout']
@@ -23,6 +25,7 @@ function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null)
   const [anchorElUser, setAnchorElUser] = useState(null)
   const [isSigninVisible, setIsSigninVisible] = useState(false)
+  const [isSignupVisible, setIsSignupVisible] = useState(false)
   const isUserConnected = false
 
   const handleOpenNavMenu = (event) => {
@@ -43,6 +46,7 @@ function NavBar() {
   return (
     <>
       <ModalSignin isOpen={isSigninVisible} onClickCloseIcon={() => setIsSigninVisible(false)} />
+      <ModalSignup isOpen={isSignupVisible} onClickCloseIcon={() => setIsSignupVisible(false)} />
       <AppBar
         position="static"
         color="white"
@@ -112,7 +116,7 @@ function NavBar() {
                       variant="contained"
                       buttonText="se connecter"
                     />
-                    <AuthButton variant="outlined" buttonText="s'inscrire" />
+                    <AuthButton onClick={() => setIsSignupVisible(true)} variant="outlined" buttonText="s'inscrire" />
                   </Stack>
                 </div>
               )}
