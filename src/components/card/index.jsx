@@ -7,11 +7,13 @@ import Typography from '@mui/material/Typography'
 import * as React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
-function CardModel({ title, price, image, isFavourite }) {
+function CardModel({ title, price, image, isFavourite, el }) {
   return (
-    <Card variant="outlined" sx={{ width: 300, borderRadius: '16px', cursor: 'pointer' }}>
+    <div>
+
+    <Card className="mb-4 rounded" variant="outlined" sx={{ width: 300, borderRadius: '16px', cursor: 'pointer' }}>
       <Box position="relative">
-        <CardMedia sx={{ height: 320 }} image={image} title={title} />
+        <CardMedia sx={{ height: 320 }} image={el.image} title={title} />
         <Box top={3} right={4} bgcolor="#FFFFFF" borderRadius={20} p="0.25" position="absolute">
           <IconButton color="primary">
             {isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
@@ -19,12 +21,15 @@ function CardModel({ title, price, image, isFavourite }) {
         </Box>
       </Box>
       <CardContent>
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant="h6">{el.title}</Typography>
         <Typography variant="body1" color="text.secondary">
-          {price}
+          {el.price}
         </Typography>
       </CardContent>
     </Card>
+    </div>
+
+
   )
 }
 export default CardModel
