@@ -1,5 +1,5 @@
 import * as React from 'react'
-
+import { Button as PanierButton } from 'design-system'
 import {
   Button, FormControl, IconButton, InputLabel, MenuItem, Select,
 } from '@mui/material'
@@ -38,7 +38,7 @@ function CardDetails() {
             <MenuItem value={4}>4</MenuItem>
           </Select>
         </FormControl>
-        <Button variant="contained"> Ajouter au panier</Button>
+        <PanierButton variant="contained" buttonText="Ajouter au panier"> </PanierButton>
         <IconButton color="primary" aria-label="add to shopping cart" />
         {/* <h3>
           {' '}
