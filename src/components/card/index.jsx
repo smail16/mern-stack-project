@@ -1,23 +1,27 @@
+import { Box } from '@mui/material'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
-function CardModel() {
+function CardModel({ title, price, image, isFavourite }) {
   return (
-    <Card sx={{ maxWidth: 320, borderRadius: '16px' }}>
-      <CardMedia
-        sx={{ height: 400 }}
-        image="https://contents.mediadecathlon.com/p2073348/k$1c0d555588837c40b5412a7eaf8f715b/t-shirt-slim-500-homme-blanc.jpg?format=auto&quality=40&f=800x800"
-        title="green iguana"
-      />
+    <Card variant="outlined" sx={{ width: 300, borderRadius: '16px', cursor: 'pointer' }}>
+      <Box position="relative">
+        <CardMedia sx={{ height: 320 }} image={image} title={title} />
+        <Box top={3} right={4} bgcolor="#FFFFFF" borderRadius={20} p="0.25" position="absolute">
+          <IconButton color="primary">
+            {isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
+          </IconButton>
+        </Box>
+      </Box>
       <CardContent>
-        <Typography variant="body2" color="text.secondary" align="center">
-          <h3>title</h3>
-          <strong>
-            <p>price : 109$</p>
-          </strong>
+        <Typography variant="h6">{title}</Typography>
+        <Typography variant="body1" color="text.secondary">
+          {price}
         </Typography>
       </CardContent>
     </Card>
