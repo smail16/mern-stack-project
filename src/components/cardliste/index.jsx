@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import * as React from 'react'
 
 import CardModel from '../card'
@@ -6,11 +6,13 @@ import CardModel from '../card'
 function CardListe({ article }) {
   return (
     <div>
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-        {article.map((el) => (
-          <CardModel el={el} />
+        
+       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around',flexWrap: 'wrap' }}>
+                 {article.map((el) => (
+                 <CardModel el={el} />
         ))}
-      </Box>
+        </Box>
+    
     </div>
   )
 }
