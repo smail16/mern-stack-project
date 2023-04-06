@@ -13,10 +13,10 @@ function CardModel({ title, price, image, isFavourite, el }) {
 
     <Card className="mb-4 rounded" variant="outlined" sx={{ width: 300, borderRadius: '16px', cursor: 'pointer' }}>
       <Box position="relative">
-        <CardMedia sx={{ height: 320 }} image={el.image} title={title} />
+        <CardMedia sx={{ height: 320 }} image={el.image} title={el.title} />
         <Box top={3} right={4} bgcolor="#FFFFFF" borderRadius={20} p="0.25" position="absolute">
           <IconButton color="primary">
-            {isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
+            {el.isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
           </IconButton>
         </Box>
       </Box>
