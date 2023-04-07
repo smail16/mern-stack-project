@@ -5,11 +5,11 @@ import CardModel from '../card'
 
 function CardListe({ article }) {
   return (
-    <div>
+    <div >
         
-       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around',flexWrap: 'wrap', mt:4 , gap:5}}>
+       <Box  sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around',flexWrap: 'wrap', mt:4 , gap:5}}>
                  {article.map((el) => (
-                 <CardModel el={el} />
+                 <CardModel  el={el} />
         ))}
         </Box>
     

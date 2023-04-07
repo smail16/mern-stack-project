@@ -46,12 +46,15 @@ const article = [
     isFavourite:true
   },
 ]
+
+
 function Home() {
   return (
     <>
       <NavBar />
       
       <CardListe article={article}/>
+      
       
       {/* <CardDetails /> */}
     </>
