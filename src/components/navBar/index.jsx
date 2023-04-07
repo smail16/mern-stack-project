@@ -1,151 +1,145 @@
-import AppBar from '@mui/material/AppBar'
+import { useTheme } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Container from '@mui/material/Container'
-import IconButton from '@mui/material/IconButton'
+import Divider from '@mui/material/Divider'
+import Drawer from '@mui/material/Drawer'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import Stack from '@mui/material/Stack'
-import Toolbar from '@mui/material/Toolbar'
-import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
-import { Button as AuthButton } from 'design-system'
-import React, { useState } from 'react'
-import { IoIosMenu } from 'react-icons/io'
+import { Button } from 'design-system'
+import React, { useCallback, useMemo, useState } from 'react'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { IoIosMenu, IoMdClose } from 'react-icons/io'
+import { Link } from 'react-router-dom'
 
 import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
-
+import { styles } from './styles'
 
 const pages = ['Homme', 'Femme', 'Enfant']
-const settings = ['Profile', 'Logout']
+const settings = ['Mes commandes', 'Profile']
 
 function NavBar() {
-  const [anchorElNav, setAnchorElNav] = useState(null)
-  const [anchorElUser, setAnchorElUser] = useState(null)
   const [isSigninVisible, setIsSigninVisible] = useState(false)
   const [isSignupVisible, setIsSignupVisible] = useState(false)
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
   const isUserConnected = false
+  const activePage = 'Femme'
+  const theme = useTheme()
+  const [isDrawerVisible, setIsDrawerVisible] = useState(false)
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget)
-  }
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget)
-  }
+  const stylesNavBar = useCallback((isActiveItem) => styles(theme, isActiveItem), [theme])
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
-  }
+  const RenderCategories = useCallback(
+    () =>
+      pages.map((page, index) => (
+        <Link to={`/${page}`} style={{ textDecoration: 'none', color: 'black' }}>
+          <Typography
+            textAlign="center"
+            mx={2}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            sx={stylesNavBar(page === activePage).categoryText}
+          >
+            {page}
+          </Typography>
+        </Link>
+      )),
+    [stylesNavBar],
+  )
 
   return (
     <>
       <ModalSignin isOpen={isSigninVisible} onClickCloseIcon={() => setIsSigninVisible(false)} />
       <ModalSignup isOpen={isSignupVisible} onClickCloseIcon={() => setIsSignupVisible(false)} />
-      <AppBar
-        position="static"
-        color="white"
-        sx={{ boxShadow: 'none', borderBottom: '1px solid #DDDDDD' }}
+      <Box
+        display="flex"
+        alignItems="center"
+        borderBottom="1px solid"
+        justifyContent="space-between"
+        borderColor={theme.palette.grey.main}
+        p={2}
       >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
+        <Box display="flex" sx={stylesNavBar().leftSide}>
+          <RenderCategories />
+        </Box>
+
+        <Box display="none" sx={stylesNavBar().iconMenu} onClick={() => setIsDrawerVisible(true)}>
+          <IoIosMenu size={30} />
+        </Box>
+        {isUserConnected ? (
+          <>
+            <Box display="flex" alignItems="center">
+              <Badge badgeContent="0" color="primary">
+                <AiOutlineHeart size={30} />
+              </Badge>
+              <Avatar
+                onClick={() => setIsMenuVisible(true)}
+                sx={{ width: 32, height: 32, marginLeft: '2rem' }}
               >
-                <IoIosMenu size={40} />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" sx={{ color: '#FF5A5F' }}>
-                      {page}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
+                M
+              </Avatar>
             </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button key={page} onClick={handleCloseNavMenu}>
-                  {page}
-                </Button>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={isMenuVisible}
+              onClose={() => setIsMenuVisible(false)}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
               ))}
+              <Divider />
+              <MenuItem>
+                <Typography textAlign="center">Déconnexion</Typography>
+              </MenuItem>
+            </Menu>
+          </>
+        ) : (
+          <Box display="flex">
+            <Box mr={1}>
+              <Button
+                onClick={() => setIsSigninVisible(true)}
+                variant="contained"
+                buttonText="se connecter"
+              />
             </Box>
-
-            <Box sx={{ flexGrow: 0 }}>
-              {isUserConnected ? (
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <div>
-                  <Stack spacing={7} direction="row">
-                    <AuthButton
-                      onClick={() => setIsSigninVisible(true)}
-                      variant="contained"
-                      buttonText="se connecter"
-                    />
-                    <AuthButton onClick={() => setIsSignupVisible(true)} variant="outlined" buttonText="s'inscrire" />
-                  </Stack>
-                </div>
-              )}
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
+            <Button
+              onClick={() => setIsSignupVisible(true)}
+              variant="outlined"
+              buttonText="s'inscrire"
+            />
+          </Box>
+        )}
+        <Drawer
+          open={isDrawerVisible}
+          onClose={() => setIsDrawerVisible(false)}
+          sx={stylesNavBar().drawer}
+        >
+          <Box
+            borderBottom="1px solid"
+            borderColor={theme.palette.grey.main}
+            p={2}
+            onClick={() => setIsDrawerVisible(false)}
+          >
+            <IoMdClose size={30} />
+          </Box>
+          <RenderCategories />
+        </Drawer>
+      </Box>
     </>
   )
 }

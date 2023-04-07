@@ -1,61 +1,21 @@
-import { Card, Grid } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import { CardDetails, CardListe, CardModel, NavBar } from 'components'
+import { articles } from 'mocks/articles'
 import React from 'react'
 
-const article = [
-  {
-      image:"https://img01.ztat.net/article/spp-media-p1/7ff430909ad63e51aa318f9a1732d7bc/fc08049c383849758b51dc446b997b66.jpg?imwidth=1800",
-      title:"Pantalon de survêtement",
-      price:"49,95 €",
-      isFavourite:true
-  },
-  {
-      image:"https://img01.ztat.net/article/spp-media-p1/7ff430909ad63e51aa318f9a1732d7bc/fc08049c383849758b51dc446b997b66.jpg?imwidth=1800",
-      title:"Pantalon de survêtement",
-      price:"49,95 €",
-      isFavourite:true
-  },
-  {
-    image:"https://img01.ztat.net/article/spp-media-p1/7ff430909ad63e51aa318f9a1732d7bc/fc08049c383849758b51dc446b997b66.jpg?imwidth=1800",
-    title:"Pantalon de survêtement",
-    price:"49,95 €",
-    isFavourite:true
-  },
-  {
-    image:"https://img01.ztat.net/article/spp-media-p1/7ff430909ad63e51aa318f9a1732d7bc/fc08049c383849758b51dc446b997b66.jpg?imwidth=1800",
-    title:"Pantalon de survêtement",
-    price:"49,95 €",
-    isFavourite:true
-  },
-  {
-    image:"https://img01.ztat.net/article/spp-media-p1/7ff430909ad63e51aa318f9a1732d7bc/fc08049c383849758b51dc446b997b66.jpg?imwidth=1800",
-    title:"Pantalon de survêtement",
-    price:"49,95 €",
-    isFavourite:true
-  },
-  {
-  image:"https://img01.ztat.net/article/spp-media-p1/7ff430909ad63e51aa318f9a1732d7bc/fc08049c383849758b51dc446b997b66.jpg?imwidth=1800",
-  title:"Pantalon de survêtement",
-  price:"49,95 €",
-  isFavourite:false
-  },
-  {
-    image:"https://img01.ztat.net/article/spp-media-p1/7ff430909ad63e51aa318f9a1732d7bc/fc08049c383849758b51dc446b997b66.jpg?imwidth=1800",
-    title:"Pantalon de survêtement",
-    price:"49,95 €",
-    isFavourite:true
-  },
-]
 function Home() {
   return (
-    <>
+    <Box>
       <NavBar />
-      
-      <CardListe article={article}/>
-      
-      {/* <CardDetails /> */}
-    </>
-   
+      {/* <Box width="33.33%" height="100vh" overflow="hidden">
+        <img
+          src="https://img.freepik.com/free-photo/full-length-portrait-handsome-serious-man_171337-17388.jpg?w=740&t=st=1680877145~exp=1680877745~hmac=dd6fadc930bee45d217b116ee84526019385f7946c9d8f2a340c4f89c5c8e24e"
+          alt=""
+          width="100%"
+          height="100%"
+        />
+      </Box> */}
+    </Box>
   )
 }
 

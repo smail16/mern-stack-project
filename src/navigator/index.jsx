@@ -1,9 +1,8 @@
 import { ThemeProvider } from '@mui/material/styles'
-import { ModalSignin, ModalSignup, NavBar } from 'components'
 import { theme } from 'config'
 import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import { Home } from 'screens'
+import { Article, Home } from 'screens'
 
 function App() {
   return (
@@ -11,8 +10,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<ModalSignin />} />
-          <Route path="/signup" element={<ModalSignup />} />
+          <Route path="/men" element={<Home />} />
+          <Route path="/girl" element={<Home />} />
+          <Route path="/kid" element={<Home />} />
+          <Route path="/article/:id" element={<Article />} />
+          <Route path="/profile" element={<Home />} />
+          <Route path="/orders" element={<Home />} />
         </Routes>
       </Router>
     </ThemeProvider>

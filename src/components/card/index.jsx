@@ -7,29 +7,30 @@ import Typography from '@mui/material/Typography'
 import * as React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
-function CardModel({ title, price, image, isFavourite, el }) {
+function CardModel({ article }) {
   return (
     <div>
-
-    <Card className="mb-4 rounded" variant="outlined" sx={{ width: 300, borderRadius: '16px', cursor: 'pointer' }}>
-      <Box position="relative">
-        <CardMedia sx={{ height: 320 }} image={el.image} title={el.title} />
-        <Box top={3} right={4} bgcolor="#FFFFFF" borderRadius={20} p="0.25" position="absolute">
-          <IconButton color="primary">
-            {el.isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
-          </IconButton>
+      <Card
+        className="mb-4 rounded"
+        variant="outlined"
+        sx={{ borderRadius: '16px', cursor: 'pointer' }}
+      >
+        <Box position="relative">
+          <CardMedia sx={{ height: 320 }} image={article.image} title={article.title} />
+          <Box top={3} right={4} bgcolor="#FFFFFF" borderRadius={20} p="0.25" position="absolute">
+            <IconButton color="primary">
+              {article.isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
+            </IconButton>
+          </Box>
         </Box>
-      </Box>
-      <CardContent>
-        <Typography variant="h6">{el.title}</Typography>
-        <Typography variant="body1" color="text.secondary">
-          {el.price}
-        </Typography>
-      </CardContent>
-    </Card>
+        <CardContent>
+          <Typography variant="h6">{article.title}</Typography>
+          <Typography variant="body1" color="text.secondary">
+            {article.price}
+          </Typography>
+        </CardContent>
+      </Card>
     </div>
-
-
   )
 }
 export default CardModel
