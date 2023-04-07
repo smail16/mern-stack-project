@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
-import React, { ReactElement, useState } from 'react'
+import React from 'react'
 
 function SelectInput({ label, errorText, onChange, value, type, items, ...props }) {
   return (
