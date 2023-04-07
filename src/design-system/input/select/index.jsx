@@ -4,8 +4,6 @@ import Select from '@mui/material/Select'
 import React, { ReactElement, useState } from 'react'
 
 function SelectInput({ label, errorText, onChange, value, type, items, ...props }) {
-  const [showPassword, setShowPassword] = useState(false)
-
   return (
     <Select
       {...props}
