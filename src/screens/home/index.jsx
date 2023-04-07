@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material'
-import { CardDetails, CardListe, CardModel, NavBar } from 'components'
+import { NavBar } from 'components'
 import { articles } from 'mocks/articles'
 import React from 'react'
 

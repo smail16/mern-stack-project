@@ -14,8 +14,11 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
       fullName: '',
       email:'',
       password: '',
+      confirmPassword:'',
       phone:'',
       address:'',
+      zip:'',
+      city:'',
     },
   })
 
@@ -70,6 +73,21 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
         </Box>
         <Box mt={2}>
           <Controller
+            name="confirmPassword"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                type="password"
+                label="Confirmer mot de passe"
+                value={field.value}
+                onChange={field.onChange}
+                errorText={fieldState.error?.message}
+              />
+            )}
+          />
+        </Box>
+        <Box mt={2}>
+          <Controller
             name="phone"
             control={control}
             render={({ field, fieldState }) => (
@@ -91,6 +109,36 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
               <TextInput
                 type="text"
                 label="Adresse"
+                value={field.value}
+                onChange={field.onChange}
+                errorText={fieldState.error?.message}
+              />
+            )}
+          />
+        </Box>
+        <Box mt={2}>
+          <Controller
+            name="zip"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                type="text"
+                label="Code postale"
+                value={field.value}
+                onChange={field.onChange}
+                errorText={fieldState.error?.message}
+              />
+            )}
+          />
+        </Box>
+        <Box mt={2}>
+          <Controller
+            name="city"
+            control={control}
+            render={({ field, fieldState }) => (
+              <TextInput
+                type="text"
+                label="Ville"
                 value={field.value}
                 onChange={field.onChange}
                 errorText={fieldState.error?.message}
