@@ -1,5 +1,3 @@
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select } from '@mui/material'
 import { CardDetails, CardModel, NavBar } from 'components'
 import { Button as PanierButton, SelectInput } from 'design-system'
@@ -7,9 +5,10 @@ import { articles } from 'mocks/articles'
 import { images } from 'mocks/images'
 import { sizes } from 'mocks/size'
 import React, { useState } from 'react'
-import { AiFillHeart } from 'react-icons/ai'
+import { AiFillHeart, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 
 import './index.css'
+import { quantity } from 'mocks/quantity'
 
 function Article() {
   const [age, setAge] = React.useState('')
@@ -30,13 +29,13 @@ function Article() {
 
   return (
     <Box>
-      <NavBar />
+      
 
       <div className="all" style={{ display: 'flex', 'margin-top': '50px' }}>
         <div className="carousel">
           <div className="carouselInner" style={{ backgroundImage: `url(${images[currImg].img})` }}>
             <div className="left">
-              <ArrowBackIosIcon
+            <AiOutlineArrowLeft
                 onClick={() => {
                   handlePrevClick()
                 }}
@@ -45,7 +44,7 @@ function Article() {
             </div>
 
             <div className="right">
-              <ArrowForwardIosIcon
+              <AiOutlineArrowRight
                 style={{ fontSize: 30 }}
                 onClick={() => {
                   handleFutClick()
@@ -68,6 +67,7 @@ function Article() {
             <h2>29,99 € </h2>
           </div>
           <div style={{ 'margin-top': '80px' }}>
+          
             <SelectInput items={sizes} onChange={(value) => console.log(value)} />
           </div>
           <div
@@ -79,22 +79,9 @@ function Article() {
               'margin-top': '45px',
             }}
           >
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 100 }}>
-              <InputLabel id="demo-simple-select-standard-label">Quantité</InputLabel>
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={age}
-                onChange={handleChange}
-                label="Age"
-              >
-                <MenuItem value="" />
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
+            <SelectInput items={quantity}/>
+            {/* <FormControl variant="standard" sx={{ m: 1, minWidth: 100 }}>
+            </FormControl> */}
             <PanierButton variant="contained" buttonText="Ajouter au panier">
               {' '}
             </PanierButton>

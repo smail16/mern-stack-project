@@ -7,7 +7,7 @@ function SelectInput({ label, errorText, onChange, value, type, items, ...props 
     <Select
       {...props}
       value={value}
-      label="taille"
+      label={value}
       onChange={(event) => onChange(event.target.value)}
       sx={{mt:5,width: 500, height:40}}
       fullWidth
