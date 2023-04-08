@@ -1,20 +1,37 @@
-import { Box, Stack } from '@mui/material'
-import { NavBar } from 'components'
-import { articles } from 'mocks/articles'
+import { Box, Typography, useTheme } from '@mui/material'
+import GirlImage from 'assets/girl.jpg'
+import MenImage from 'assets/men.jpg'
 import React from 'react'
 
+import { Image } from './style'
+
 function Home() {
+  const theme = useTheme()
+
   return (
-    <Box>
-      <NavBar />
-      {/* <Box width="33.33%" height="100vh" overflow="hidden">
-        <img
-          src="https://img.freepik.com/free-photo/full-length-portrait-handsome-serious-man_171337-17388.jpg?w=740&t=st=1680877145~exp=1680877745~hmac=dd6fadc930bee45d217b116ee84526019385f7946c9d8f2a340c4f89c5c8e24e"
-          alt=""
-          width="100%"
-          height="100%"
-        />
-      </Box> */}
+    <Box display="flex" overflow="hidden">
+      <Image href="/men" img={MenImage}>
+        <Typography
+          letterSpacing={20}
+          textAlign="center"
+          mt={6}
+          variant="h4"
+          color={theme.palette.white.main}
+        >
+          HOMME
+        </Typography>
+      </Image>
+      <Image href="/woman" img={GirlImage}>
+        <Typography
+          letterSpacing={20}
+          textAlign="center"
+          mt={6}
+          variant="h4"
+          color={theme.palette.white.main}
+        >
+          FEMME
+        </Typography>
+      </Image>
     </Box>
   )
 }

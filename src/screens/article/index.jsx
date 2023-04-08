@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material'
-import { CardDetails, CardListe, CardModel, NavBar } from 'components'
+import { CardDetails, CardModel, NavBar } from 'components'
 import { SelectInput } from 'design-system'
 import { articles } from 'mocks/articles'
 import { sizes } from 'mocks/size'

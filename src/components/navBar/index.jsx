@@ -17,15 +17,14 @@ import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
 import { styles } from './styles'
 
-const pages = ['Homme', 'Femme', 'Enfant']
+const pages = ['men', 'woman']
 const settings = ['Mes commandes', 'Profile']
 
-function NavBar() {
+function NavBar({ activePage }) {
   const [isSigninVisible, setIsSigninVisible] = useState(false)
   const [isSignupVisible, setIsSignupVisible] = useState(false)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const isUserConnected = false
-  const activePage = 'Femme'
   const theme = useTheme()
   const [isDrawerVisible, setIsDrawerVisible] = useState(false)
 
@@ -46,7 +45,7 @@ function NavBar() {
           </Typography>
         </Link>
       )),
-    [stylesNavBar],
+    [activePage, stylesNavBar],
   )
 
   return (
