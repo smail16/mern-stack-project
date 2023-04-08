@@ -9,7 +9,7 @@ function Home() {
   return (
     <Box>
       <NavBar />
-      <CardDetails/>
+      {/* <CardDetails/> */}
       {/* <SelectInput items={sizes}/> */}
       {/* <Box width="33.33%" height="100vh" overflow="hidden">
         <img
