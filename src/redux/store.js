@@ -1,13 +1,14 @@
+/* eslint-disable no-underscore-dangle */
+import { applyMiddleware, compose, createStore } from 'redux'
+import thunk from 'redux-thunk'
 
-import thunk from "redux-thunk"
-import { createStore, compose, applyMiddleware } from "redux"
 import rootReducer from './rootReducer'
 
-
-const devtools= window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const devtools =
+  typeof window.__REDUX_DEVTOOLS_EXTENSION__ === 'undefined'
+    ? (a) => a
+    : window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk), devtools))
-
-
 
 export default store
