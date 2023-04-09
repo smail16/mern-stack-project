@@ -15,4 +15,7 @@ export const theme = createTheme({
       main: '#D3D3D3',
     },
   },
+  breakpoints: {
+    sm: ' 321.95px',
+  },
 })

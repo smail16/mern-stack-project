@@ -2,9 +2,10 @@ import { Typography } from '@mui/material'
 import Button from '@mui/material/Button'
 import React from 'react'
 
-function ButtonEl({ variant, buttonText, disabled = false, onClick, type }) {
+function ButtonEl({ variant, buttonText, disabled = false, onClick, type, ...props }) {
   return (
     <Button
+      {...props}
       variant={variant}
       disabled={disabled}
       onClick={onClick}

@@ -1,5 +1,4 @@
 import { ThemeProvider } from '@mui/material/styles'
-import { NavBar } from 'components'
 import { theme } from 'config'
 import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
