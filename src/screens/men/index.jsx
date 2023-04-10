@@ -1,6 +1,6 @@
 import { Basket, CardListe, NavBar } from 'components'
-import React, { useState } from 'react'
 import { articles } from 'mocks/articles'
+import React, { useState } from 'react'
 
 function Men() {
   const [cart, setCart] = useState([])
@@ -14,14 +14,15 @@ function Men() {
 
   const handleShow = (value) => {
     setShowCart(value)
-    console.log("test")
+    console.log('test')
   }
-  
-  return <div>
-    <NavBar count={cart.length}  cart={cart}/>
-  <CardListe articles={articles} addToCart={addToCart}/>
-  {/* <Basket /> */}
-</div>
+
+  return (
+    <div>
+      <CardListe articles={articles} addToCart={addToCart} />
+      {/* <Basket /> */}
+    </div>
+  )
 }
 
 export default Men

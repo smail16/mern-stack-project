@@ -3,7 +3,7 @@ import { NavBar } from 'components'
 import { theme } from 'config'
 import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import { Article, Base, Home, Men, Woman } from 'screens'
+import { Article, Base, Home, Men, Profile, Woman } from 'screens'
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
             <Route path="/men" element={<Men />} />
             <Route path="/woman" element={<Woman />} />
             <Route path="/article/:id" element={<Article />} />
-            <Route path="/profile" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Home />} />
           </Route>
         </Routes>

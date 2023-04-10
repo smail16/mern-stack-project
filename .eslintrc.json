@@ -41,6 +41,8 @@
     "no-unused-vars": "off",
     "semi": ["error", "never"],
     "react/prop-types": "off",
-    "react/jsx-boolean-value": "off"
+    "react/jsx-boolean-value": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "no-underscore-dangle": "off"
   }
 }
