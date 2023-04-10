@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select } from '@mui/material'
 import { CardDetails, CardModel, NavBar } from 'components'
 import { Button as PanierButton, SelectInput } from 'design-system'
 import { articles } from 'mocks/articles'
@@ -29,6 +29,7 @@ function Article() {
 
   return (
     <Box>
+      
       
       <div className="all" style={{ display: 'flex', 'margin-top': '50px' }}>
         <div className="carousel">
