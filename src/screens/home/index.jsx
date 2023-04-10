@@ -3,7 +3,10 @@ import GirlImage from 'assets/girl.jpg'
 import MenImage from 'assets/men.jpg'
 import React from 'react'
 
+
+
 import { Image } from './style'
+
 
 function Home() {
   const theme = useTheme()
@@ -33,6 +36,7 @@ function Home() {
         </Typography>
       </Image>
     </Box>
+      
   )
 }
 

@@ -9,26 +9,33 @@ import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
 import { Button } from 'design-system'
 import React, { useCallback, useMemo, useState } from 'react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { IoIosMenu, IoMdClose } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
+import Basket  from '../shoppingcard'
 import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
 import { styles } from './styles'
 
+
 const pages = ['men', 'woman']
 const settings = ['Mes commandes', 'Profile']
 
-function NavBar({ activePage }) {
+function NavBar({ activePage , countCartItems, handleShow, count, cart}) {
+  console.log(count===0)
   const [isSigninVisible, setIsSigninVisible] = useState(false)
   const [isSignupVisible, setIsSignupVisible] = useState(false)
+  const [isBasketVisible, setIsBasketVisible]=useState(false)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const isUserConnected = false
+  const isUserConnected = true
   const theme = useTheme()
   const [isDrawerVisible, setIsDrawerVisible] = useState(false)
 
   const stylesNavBar = useCallback((isActiveItem) => styles(theme, isActiveItem), [theme])
+  // function handelShowBasket(){
+  //   setIsBasketVisible(true)
+  // }
 
   const RenderCategories = useCallback(
     () =>
@@ -52,6 +59,7 @@ function NavBar({ activePage }) {
     <>
       <ModalSignin isOpen={isSigninVisible} onClickCloseIcon={() => setIsSigninVisible(false)} />
       <ModalSignup isOpen={isSignupVisible} onClickCloseIcon={() => setIsSignupVisible(false)} />
+      <Basket  cart={cart} isOpen={isBasketVisible} onClickCloseIcon={() => setIsBasketVisible(false)}/>
       <Box
         display="flex"
         alignItems="center"
@@ -69,10 +77,17 @@ function NavBar({ activePage }) {
         </Box>
         {isUserConnected ? (
           <>
-            <Box display="flex" alignItems="center">
+          
+            <Box display="flex" alignItems="center" >
               <Badge badgeContent="0" color="primary">
                 <AiOutlineHeart size={30} />
+                
               </Badge>
+              <Badge sx={{ width: 32, height: 32, marginLeft: '2rem' }} badgeContent={count === 0 ? "0":count} color="primary"onClick={() => setIsBasketVisible(true)}>
+                <AiOutlineShoppingCart size={30}/>
+                
+              </Badge>
+              
               <Avatar
                 onClick={() => setIsMenuVisible(true)}
                 sx={{ width: 32, height: 32, marginLeft: '2rem' }}
@@ -106,6 +121,7 @@ function NavBar({ activePage }) {
                 <Typography textAlign="center">Déconnexion</Typography>
               </MenuItem>
             </Menu>
+            
           </>
         ) : (
           <Box display="flex">
@@ -121,6 +137,10 @@ function NavBar({ activePage }) {
               variant="outlined"
               buttonText="s'inscrire"
             />
+            <Button sx={{ width: 32, height: 32, marginLeft: '2rem' }} badgeContent={count === 0 ? "0":count} color="primary" >
+                <AiOutlineShoppingCart size={30}/>
+                
+              </Button>
           </Box>
         )}
         <Drawer

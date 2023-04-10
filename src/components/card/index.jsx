@@ -4,10 +4,11 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
+import { Button as PanierButton } from 'design-system'
 import * as React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
-function CardModel({ article }) {
+function CardModel({ article ,addToCart}) {
   return (
     <div>
       <Card
@@ -28,6 +29,9 @@ function CardModel({ article }) {
           <Typography variant="body1" color="text.secondary">
             {article.price}
           </Typography>
+          <PanierButton variant="contained" buttonText="Ajouter au panier" onClick={() => addToCart(article)}>
+              console.log(addToCart)
+            </PanierButton>
         </CardContent>
       </Card>
     </div>

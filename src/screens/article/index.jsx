@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select } from '@mui/material'
+import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select, Typography } from '@mui/material'
 import { CardDetails, CardModel, NavBar } from 'components'
 import { Button as PanierButton, SelectInput } from 'design-system'
 import { articles } from 'mocks/articles'
@@ -11,11 +11,11 @@ import './index.css'
 import { quantity } from 'mocks/quantity'
 
 function Article() {
-  const [age, setAge] = React.useState('')
+  // const [age, setAge] = React.useState('')
   const [currImg, setCurrImg] = useState(0)
-  const handleChange = (event) => {
-    setAge(event.target.value)
-  }
+  // const handleChange = (event) => {
+  //   setAge(event.target.value)
+  // }
   function handlePrevClick() {
     if (currImg > 0) {
       setCurrImg(currImg - 1)
@@ -30,7 +30,6 @@ function Article() {
   return (
     <Box>
       
-
       <div className="all" style={{ display: 'flex', 'margin-top': '50px' }}>
         <div className="carousel">
           <div className="carouselInner" style={{ backgroundImage: `url(${images[currImg].img})` }}>
@@ -60,7 +59,7 @@ function Article() {
               sx={{ display: 'flex', 'flex-direction': 'row', 'justify-content': 'space-between' }}
             >
               <h1>CHEMISE MANCHES LONGUES RUSTIQUE</h1>
-              <IconButton color="primary">
+              <IconButton color="primary" width={100}>
                 <AiFillHeart />
               </IconButton>
             </Box>
