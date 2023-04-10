@@ -6,7 +6,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/button-has-type */
 import * as React from 'react'
-import { Box, Button, CardMedia, Typography } from '@mui/material'
+import { Box,  CardMedia, Typography } from '@mui/material'
 import { AiFillDelete, AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
 import { Button as CommandeButton } from 'design-system'
 import Modal from '../modal'
