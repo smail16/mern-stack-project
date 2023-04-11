@@ -4,12 +4,12 @@ import * as React from 'react'
 
 import CardModel from '../card'
 
-function CardListe({ articles, addToCart }) {
+function CardListe({ articles}) {
   return (
     <Grid container spacing={3}>
       {articles.map((article) => (
         <Grid item key={article.id} md={3}>
-          <CardModel article={article} addToCart={addToCart}/>
+          <CardModel article={article} />
         </Grid>
       ))}
     </Grid>

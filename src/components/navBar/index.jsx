@@ -13,6 +13,7 @@ import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/
 import { IoIosMenu, IoMdClose } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
+import { useSelector } from 'react-redux'
 import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
 import Basket from '../shoppingcard'
@@ -21,8 +22,12 @@ import { styles } from './styles'
 const pages = ['men', 'woman']
 const settings = ['Mes commandes', 'Profile']
 
-function NavBar({ activePage, countCartItems, handleShow, count, cart }) {
-  console.log(count === 0)
+function NavBar({ activePage, countCartItems, handleShow, count }) {
+  
+  const cart = useSelector((state) => state.cart)
+  const itemCount = cart.reduce((total, item) => total + item.quantity, 0)
+  
+  
   const [isSigninVisible, setIsSigninVisible] = useState(false)
   const [isSignupVisible, setIsSignupVisible] = useState(false)
   const [isBasketVisible, setIsBasketVisible] = useState(false)
@@ -56,10 +61,11 @@ function NavBar({ activePage, countCartItems, handleShow, count, cart }) {
 
   return (
     <>
+    
       <ModalSignin isOpen={isSigninVisible} onClickCloseIcon={() => setIsSigninVisible(false)} />
       <ModalSignup isOpen={isSignupVisible} onClickCloseIcon={() => setIsSignupVisible(false)} />
       <Basket
-        cart={cart}
+        
         isOpen={isBasketVisible}
         onClickCloseIcon={() => setIsBasketVisible(false)}
       />
@@ -71,6 +77,7 @@ function NavBar({ activePage, countCartItems, handleShow, count, cart }) {
         borderColor={theme.palette.grey.main}
         p={2}
       >
+        
         <Box display="flex" sx={stylesNavBar().leftSide}>
           <RenderCategories />
         </Box>
@@ -86,11 +93,13 @@ function NavBar({ activePage, countCartItems, handleShow, count, cart }) {
               </Badge>
               <Badge
                 sx={{ width: 32, height: 32, marginLeft: '2rem' }}
-                badgeContent={count || '0'}
+                badgeContent={itemCount || '0'}
                 color="primary"
                 onClick={() => setIsBasketVisible(true)}
               >
-                <AiOutlineShoppingCart size={30} />
+                <AiOutlineShoppingCart size={30}/>
+                
+                
               </Badge>
 
               <Avatar
@@ -146,7 +155,7 @@ function NavBar({ activePage, countCartItems, handleShow, count, cart }) {
               badgeContent={count === 0 ? '0' : count}
               color="primary"
             >
-              <AiOutlineShoppingCart size={30} />
+              <AiOutlineShoppingCart size={30}/>
             </Button>
           </Box>
         )}

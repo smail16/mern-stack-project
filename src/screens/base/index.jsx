@@ -7,11 +7,10 @@ function Base() {
 
   return (
     <>
-      <NavBar />
+      <NavBar activePage={location.pathname.replace('/', '')} />
       <Outlet />
     </>
   )
 }
 
 export default Base
-// activePage={location.pathname.replace('/', '')} 

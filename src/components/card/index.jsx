@@ -4,11 +4,17 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import { Button as PanierButton } from 'design-system'
+import { Button as PanierButton, SelectInput } from 'design-system'
 import * as React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
+import { addToCart } from 'redux/cartSlice/cartSlice'
+import { sizes } from 'mocks/size'
 
-function CardModel({ article ,addToCart}) {
+function CardModel({ article }) {
+  const dispatch = useDispatch()
+  const [isDisabled, setisDisabled] = React.useState(false)
+  
   return (
     <div>
       <Card
@@ -29,9 +35,10 @@ function CardModel({ article ,addToCart}) {
           <Typography variant="body1" color="text.secondary">
             {article.price}
           </Typography>
-          <PanierButton variant="contained" buttonText="Ajouter au panier" onClick={() => addToCart(article)}>
-              console.log(addToCart)
-            </PanierButton>
+          <PanierButton disabled={isDisabled} variant="contained" buttonText="Ajouter au panier" onClick={() => dispatch(addToCart({ article }))
+        } /> 
+         <SelectInput items={sizes} label="Taille" onChange={(value) => setisDisabled(true)} />
+            
         </CardContent>
       </Card>
     </div>
