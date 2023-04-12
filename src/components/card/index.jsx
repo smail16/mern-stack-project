@@ -13,7 +13,7 @@ import { sizes } from 'mocks/size'
 
 function CardModel({ article }) {
   const dispatch = useDispatch()
-  const [isDisabled, setisDisabled] = React.useState(false)
+  const [isDisabled, setisDisabled] = React.useState(true)
   
   return (
     <div>
@@ -37,7 +37,7 @@ function CardModel({ article }) {
           </Typography>
           <PanierButton disabled={isDisabled} variant="contained" buttonText="Ajouter au panier" onClick={() => dispatch(addToCart({ article }))
         } /> 
-         <SelectInput items={sizes} label="Taille" onChange={(value) => setisDisabled(true)} />
+         <SelectInput items={sizes} sx={{mt:4}} label="Veuillez choisir votre taille" onChange={(value) => setisDisabled(false)} />
             
         </CardContent>
       </Card>
