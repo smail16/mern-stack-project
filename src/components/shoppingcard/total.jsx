@@ -14,7 +14,7 @@ function Total() {
       <ul>
         {cart.map(item => (
           <li key={item.id}>
-            {item.article.title} : {item.article.price}€ x {item.quantity}
+            {item.title} : {item.price}€ x {item.quantity}
           </li>
         ))}
       </ul>

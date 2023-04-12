@@ -6,11 +6,11 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/button-has-type */
 import * as React from 'react'
-import { Box,  CardMedia, Grid, Typography } from '@mui/material'
-import { AiFillDelete, AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
+import {  Grid } from '@mui/material'
+
 import { Button as CommandeButton } from 'design-system'
-import { useDispatch, useSelector } from 'react-redux'
-import { decrementQuantity, incrementQuantity, removeItem } from 'redux/cartSlice/cartSlice'
+import {  useSelector } from 'react-redux'
+
 
 import Modal from '../modal'
 import BasketItem from './index1'
@@ -29,29 +29,31 @@ function Basket  ({onClickCloseIcon,isOpen}) {
   return (
     
     
-    <Modal  isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
-           <div>
+    <Modal  isOpen={isOpen} onClickCloseIcon={onClickCloseIcon} >
+           <div style={{display:'flex'}}>
+                    <div>
           
-          {cart?.map((article) => (
+                            {cart?.map((article) => (
+                                
+                            <Grid item  md={3}>
+                            <BasketItem 
+                            article={article}
+                            key={article.id}
+                            
+                            />
+                            </Grid>
+                     
             
-            <Grid item key={article.id} md={3}>
-          <BasketItem 
-          article={article}
-          key={article.id}
-          id={article.id}
-        //   image={article.image}
-        //   title={article.title}
-        //   price={article.price} 
-          quantity={article.quantity} />
-        </Grid>
-            
-            
-          ))}
+                                      ))}
+                    </div>
+                    <div>
+                            <Total/>
+                    </div>
+                    
           
-          
-        </div>  
+            </div>  
          
-       <Total/>
+                    
     <CommandeButton variant="contained" buttonText="Passer votre commande"/>
     </Modal>
   )

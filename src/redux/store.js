@@ -1,4 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore, applyMiddleware, compose } from "@reduxjs/toolkit"
+import thunk from 'redux-thunk'
 import storage from 'redux-persist/lib/storage'
 import {
   persistStore,
@@ -19,6 +20,9 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, cartReducer)
 
+// Create an array of middleware, including Redux Thunk
+const middleware = [thunk]
+
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -26,10 +30,141 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(middleware),
+  // Add the Redux DevTools extension
+  devTools: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 })
 
 export const persistor = persistStore(store)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { configureStore } from "@reduxjs/toolkit"
+// import storage from 'redux-persist/lib/storage'
+// import {
+//   persistStore,
+//   persistReducer,
+//   FLUSH,
+//   REHYDRATE,
+//   PAUSE,
+//   PERSIST,
+//   PURGE,
+//   REGISTER,
+// } from 'redux-persist'
+// import { cartReducer } from "./cartSlice/cartSlice"
+
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+// }
+
+// const persistedReducer = persistReducer(persistConfig, cartReducer)
+
+// export const store = configureStore({
+//   reducer: persistedReducer,
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+// })
+
+// export const persistor = persistStore(store)
 
 
 

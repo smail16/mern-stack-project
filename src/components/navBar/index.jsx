@@ -22,7 +22,7 @@ import { styles } from './styles'
 const pages = ['men', 'woman']
 const settings = ['Mes commandes', 'Profile']
 
-function NavBar({ activePage, countCartItems, handleShow, count }) {
+function NavBar({ activePage }) {
   
   const cart = useSelector((state) => state.cart)
   const itemCount = cart.reduce((total, item) => total + item.quantity, 0)
@@ -37,9 +37,7 @@ function NavBar({ activePage, countCartItems, handleShow, count }) {
   const [isDrawerVisible, setIsDrawerVisible] = useState(false)
 
   const stylesNavBar = useCallback((isActiveItem) => styles(theme, isActiveItem), [theme])
-  // function handelShowBasket(){
-  //   setIsBasketVisible(true)
-  // }
+  
 
   const RenderCategories = useCallback(
     () =>
@@ -152,7 +150,7 @@ function NavBar({ activePage, countCartItems, handleShow, count }) {
             />
             <Button
               sx={{ width: 32, height: 32, marginLeft: '2rem' }}
-              badgeContent={count === 0 ? '0' : count}
+              badgeContent={itemCount === 0 ? '0' : itemCount}
               color="primary"
             >
               <AiOutlineShoppingCart size={30}/>
