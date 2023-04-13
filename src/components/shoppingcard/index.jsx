@@ -1,55 +1,28 @@
-
-
-import * as React from 'react'
-import {  Grid } from '@mui/material'
-
+import { Grid, Stack } from '@mui/material'
 import { Button as CommandeButton } from 'design-system'
-import {  useSelector } from 'react-redux'
-
+import * as React from 'react'
+import { useSelector } from 'react-redux'
+import { selectTotalPrice } from 'redux/cartSlice/cartSlice'
 
 import Modal from '../modal'
-import BasketItem from './index1'
-import Total from './total'
+import BasketItem from './basketItem'
 
+function Basket({ onClickCloseIcon, isOpen }) {
+  const cart = useSelector((state) => state.cart)
+  const totalPrice = useSelector(selectTotalPrice)
+  console.log(cart)
 
-
-
-    
-function Basket  ({onClickCloseIcon,isOpen}) {
-                     
-    const cart = useSelector((state) => state.cart)
-    
-
-    
   return (
-    
-    
-    <Modal  isOpen={isOpen} onClickCloseIcon={onClickCloseIcon} >
-           <div style={{display:'flex'}}>
-                    <div>
-          
-                            {cart?.map((article) => (
-                                
-                            <Grid item  md={3}>
-                            <BasketItem 
-                            article={article}
-                            key={article.id}
-                            
-                            />
-                            </Grid>
-                     
-            
-                                      ))}
-                    </div>
-                    <div >
-                            <Total/>
-                    </div>
-                    
-          
-            </div>  
-         
-                    
-    <CommandeButton variant="contained" buttonText="Passer votre commande"/>
+    <Modal isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
+      <Stack spacing={2}>
+        {cart?.map((article) => (
+          <BasketItem article={article} key={article.id} />
+        ))}
+      </Stack>
+
+      <p>Total Price: {totalPrice}€</p>
+
+      <CommandeButton variant="contained" buttonText="Passer votre commande" />
     </Modal>
   )
 }
