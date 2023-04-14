@@ -1,6 +1,6 @@
-import { styled } from '@mui/material'
+import { Stack, styled } from '@mui/material'
 
-export const ButtonContainer = styled('div')(({ theme }) => ({
+export const ButtonContainer = styled(Stack)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.down('sm')]: {
@@ -13,9 +13,13 @@ export const Section = styled('form')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  padding: '2rem 0',
+  padding: '1.5rem 1rem',
   width: '100%',
-  borderBottom: `1px solid ${theme.palette.grey.main}`,
+  backgroundColor: 'white',
+  borderRadius: '20px',
+  boxSizing: 'border-box',
+  marginTop: '1rem',
+  boxShadow: '0 2px 16px 0 rgba(64,41,85,0.08)',
   [theme.breakpoints.down('sm')]: {
     flexWrap: 'wrap',
   },

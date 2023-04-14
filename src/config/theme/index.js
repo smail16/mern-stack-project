@@ -14,6 +14,9 @@ export const theme = createTheme({
     grey: {
       main: '#D3D3D3',
     },
+    lightGrey: {
+      main: ' #FBFBFB',
+    },
   },
   breakpoints: {
     sm: ' 321.95px',
