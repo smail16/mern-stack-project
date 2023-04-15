@@ -3,14 +3,17 @@ import { Box, CardMedia, Grid, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { AiFillDelete, AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
-import { decrementQuantity, incrementQuantity, removeItem } from 'redux/cartSlice/cartSlice'
+import { decrementQuantity, incrementQuantity, removeItem } from 'redux/Slice/Slice'
+
+
+
 
 function BasketItem({ article }) {
   const dispatch = useDispatch()
 
   return (
     <Box position="relative" display="flex">
-      <img width={100} height="auto" src={article.image} alt="" />
+      <img width={100} height="auto" src={article.images} alt="" />
       <Box width="100%" px={2} boxSizing="border-box">
         <Box display="flex" width="100%" justifyContent="space-between">
           <Typography variant="body1" fontWeight="bold">

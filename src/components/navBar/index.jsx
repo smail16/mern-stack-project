@@ -12,7 +12,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { IoIosMenu, IoMdClose } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-
+import { articles } from 'mocks/articles'
 import { useSelector } from 'react-redux'
 import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
@@ -22,11 +22,16 @@ import { styles } from './styles'
 const pages = ['men', 'woman']
 const settings = ['Mes commandes', 'Profile']
 
-function NavBar({ activePage }) {
+function NavBar({ activePage}) {
   
   const cart = useSelector((state) => state.cart)
+  const products = useSelector((state) => state.products)
+  // console.log(cart, 'hello')
   const itemCount = cart.reduce((total, item) => total + item.quantity, 0)
-  
+  // console.log(itemCount , '1')
+  const favouriteCount = products.filter((item) => item.isFavourite === true).length 
+  // console.log(favouriteCount,'count')
+
   
   const [isSigninVisible, setIsSigninVisible] = useState(false)
   const [isSignupVisible, setIsSignupVisible] = useState(false)
@@ -86,7 +91,7 @@ function NavBar({ activePage }) {
         {isUserConnected ? (
           <>
             <Box display="flex" alignItems="center">
-              <Badge badgeContent="0" color="primary">
+              <Badge badgeContent={favouriteCount || '0'} color="primary">
                 <AiOutlineHeart size={30} />
               </Badge>
               <Badge

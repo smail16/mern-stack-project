@@ -2,7 +2,7 @@ import { Grid, Stack } from '@mui/material'
 import { Button as CommandeButton } from 'design-system'
 import * as React from 'react'
 import { useSelector } from 'react-redux'
-import { selectTotalPrice } from 'redux/cartSlice/cartSlice'
+import { selectTotalPrice } from 'redux/Slice/Slice'
 
 import Modal from '../modal'
 import BasketItem from './basketItem'
@@ -10,7 +10,7 @@ import BasketItem from './basketItem'
 function Basket({ onClickCloseIcon, isOpen }) {
   const cart = useSelector((state) => state.cart)
   const totalPrice = useSelector(selectTotalPrice)
-  console.log(cart)
+  // console.log(cart)
 
   return (
     <Modal isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
@@ -20,7 +20,7 @@ function Basket({ onClickCloseIcon, isOpen }) {
         ))}
       </Stack>
 
-      <p>Total Price: {totalPrice}€</p>
+      <p>Total Price: {totalPrice.toFixed(2)}€</p>
 
       <CommandeButton variant="contained" buttonText="Passer votre commande" />
     </Modal>

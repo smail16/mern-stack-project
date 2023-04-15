@@ -4,7 +4,8 @@ import * as React from 'react'
 
 import CardModel from '../card'
 
-function CardListe({ articles}) {
+function CardListe({ articles }) {
+  console.log(articles)
   return (
     <Grid container spacing={3}>
       {articles.map((article) => (
