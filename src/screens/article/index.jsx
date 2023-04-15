@@ -39,17 +39,13 @@ const Caroussel = styled(Swiper)(({ theme }) => ({
 
 function Article({ id }) {
   const theme = useTheme()
-  const [clickCount, setClickCount] = useState(0)
-  // const handleClick = () => {
-  //   setIsFavourite(!isFavourite)
 
-  // }
   const cart = useSelector((state) => state.cart)
   const products = useSelector((state) => state.products)
 
   // const [isDisabled, setisDisabled] = React.useState(true)
-  const [selectedSize, setSelectedSize] = React.useState("")
-  const [selectedQuantity, setSelectedQuantity] = React.useState("")
+  const [selectedSize, setSelectedSize] = React.useState('')
+  const [selectedQuantity, setSelectedQuantity] = React.useState('')
   const [article, setArticle] = React.useState(null)
   const params = useParams()
   React.useEffect(() => {
@@ -58,7 +54,18 @@ function Article({ id }) {
   // const handleAddToCart= ()=>{
   //   const product={ selectedSize,selectedQuantity }
   // }
-  
+  const [itemWithSizeAndQuantite, setItemWithSizeAndQuantite] = useState({ size: '' , quantity:'0', article:products.filter((prod) => prod.id === params.id)[0]})
+
+  const handelChangeSize = (value)=>{
+    setSelectedSize(value)
+    setItemWithSizeAndQuantite((prevState) => ({ ...prevState, size: value  }))
+                  console.log(itemWithSizeAndQuantite,'aaaaaaaaaaaaaaaa')
+  }
+  const handelChangeQuantity = (value)=>{
+    setSelectedQuantity(value)
+    setItemWithSizeAndQuantite((prevState) => ({ ...prevState, quantity: value  }))
+                  console.log(itemWithSizeAndQuantite,'aaaaaaaaaaaaaaaa')
+  }
 
   const dispatch = useDispatch()
   if (article) {
@@ -99,12 +106,14 @@ function Article({ id }) {
               <SelectInput
                 items={sizes}
                 label="Taille"
-                onChange={(value) => setSelectedSize(value)}
+                onChange={(value) =>{handelChangeSize(value)}
+                  
+                }
               />
               <SelectInput
                 label="Quantité"
                 items={quantity}
-                onChange={(value) => setSelectedQuantity(value)}
+                onChange={(value) => handelChangeQuantity(value)}
               />
             </Stack>
             <Stack direction="row" spacing={3} mt={4}>
@@ -113,8 +122,7 @@ function Article({ id }) {
                 variant="contained"
                 fullWidth
                 buttonText="Ajouter au panier"
-                onClick={() => dispatch(addToCart({ article }) )}
-                
+                onClick={() => dispatch(addToCart({ itemWithSizeAndQuantite }))}
               />
 
               <Button

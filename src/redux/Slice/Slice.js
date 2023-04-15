@@ -9,12 +9,12 @@ const storeSlice = createSlice({
   },
   reducers: {
     ToogleLike: (state, action) => {
-      console.log(current(state), action.payload)
+      // console.log(action.payload, 'pay')
 
       // console.log(state.cart,'id')
 
       const likeArticle = state.products.find((article) => article.id === action.payload.article.id)
-      console.log(likeArticle, 'filtred')
+      // console.log(likeArticle, 'filtred')
 
       if (likeArticle) {
         likeArticle.isFavourite = !likeArticle.isFavourite
@@ -22,26 +22,40 @@ const storeSlice = createSlice({
     },
 
     addToCart: (state, action) => {
-      const itemInCart = state.cart.find((article) => article.id === action.payload.article.id)
 
+      console.log(action.payload,'pay')
+      const itemInCart = state.cart.find((article) => article.id === action.payload.itemWithSizeAndQuantite.article.id && article.size===action.payload.itemWithSizeAndQuantite.size)
+        console.log(action.payload,'itemInCart')
       if (itemInCart) {
-        itemInCart.quantity += 1
+        itemInCart.quantity = Number(itemInCart.quantity) + Number(action.payload.itemWithSizeAndQuantite.quantity)
       } else {
-        state.cart.push({ ...action.payload.article, quantity: action.payload.quantity || 1 })
+        // state.cart.push({ ...action.payload.article, quantity: action.payload.quantity || 1})
+         state.cart.push({ ...action.payload.itemWithSizeAndQuantite.article, quantity: action.payload.itemWithSizeAndQuantite.quantity || 1, size:action.payload.itemWithSizeAndQuantite.size})
       }
+      // console.log(typeof(action.payload.quantity,'rr'))
     },
 
     decrementQuantity: (state, action) => {
-      const item = state.cart.find((article) => article.id === action.payload)
+      console.log(action.payload,'zzzzzzzzzzzzz')
+      // const item = state.cart.find((article) =>console.log(article.size,'comentaire'))
+      
 
-      if (item && item.quantity > 1) {
-        item.quantity -= 1
+       const item = state.cart.find((article) => article.id === action.payload.id && article.size===action.payload.size)
+        let quantity=Number(item.quantity)
+      if (item && quantity > 1) {
+        console.log(typeof(quantity),'-------------')
+        quantity -= 1
+        item.quantity=quantity
+        
       }
     },
     incrementQuantity: (state, action) => {
-      const item = state.cart.find((article) => article.id === action.payload)
+      const item = state.cart.find((article) => article.id === action.payload.id && article.size===action.payload.size)
+      let quantity=Number(item.quantity)
       if (item) {
-        item.quantity += 1
+        console.log(typeof(quantity),'+++++++++++')
+        quantity += 1
+        item.quantity=quantity
       }
     },
 

@@ -14,7 +14,7 @@ function BasketItem({ article }) {
   return (
     <Box position="relative" display="flex">
       <img width={100} height="auto" src={article.images} alt="" />
-      <Box width="100%" px={2} boxSizing="border-box">
+      <Box width="98%" px={2} boxSizing="border-box">
         <Box display="flex" width="100%" justifyContent="space-between">
           <Typography variant="body1" fontWeight="bold">
             {article.title}
@@ -22,15 +22,18 @@ function BasketItem({ article }) {
           <AiFillDelete size={20} onClick={() => dispatch(removeItem(article.id))} />
         </Box>
         <Stack direction="row" spacing={1} mt={2} display="flex" alignItems="center">
-          <AiFillMinusCircle size={30} onClick={() => dispatch(decrementQuantity(article.id))} />
+          <AiFillMinusCircle size={30} onClick={() => dispatch(decrementQuantity(article))} />
           <p>{article.quantity}</p>
-          <AiFillPlusCircle size={30} onClick={() => dispatch(incrementQuantity(article.id))} />
+          <AiFillPlusCircle size={30} onClick={() => dispatch(incrementQuantity(article))} />
         </Stack>
         <Typography mt={2} color="text.secondary">
-          {article.quantity}
+         Quntité: {article.quantity}
+        </Typography>
+        <Typography mt={2} color="text.secondary">
+          Taille: {article.size}
         </Typography>
         <Typography mt={2} variant="body1" color="text.secondary">
-          {article.price}
+          Prix :{article.price}€
         </Typography>
       </Box>
     </Box>

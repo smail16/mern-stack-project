@@ -9,6 +9,7 @@ import BasketItem from './basketItem'
 
 function Basket({ onClickCloseIcon, isOpen }) {
   const cart = useSelector((state) => state.cart)
+  console.log(cart,'cart')
   const totalPrice = useSelector(selectTotalPrice)
   // console.log(cart)
 
