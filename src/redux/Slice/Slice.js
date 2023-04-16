@@ -24,15 +24,17 @@ const storeSlice = createSlice({
     addToCart: (state, action) => {
 
       console.log(action.payload,'pay')
-      const itemInCart = state.cart.find((article) => article.id === action.payload.itemWithSizeAndQuantite.article.id && article.size===action.payload.itemWithSizeAndQuantite.size)
+      const itemInCart = state.cart.find((article) => article.id === action.payload.id && article.selectedSize===action.payload.selectedSize)
         console.log(action.payload,'itemInCart')
       if (itemInCart) {
-        itemInCart.quantity = Number(itemInCart.quantity) + Number(action.payload.itemWithSizeAndQuantite.quantity)
+        if(itemInCart.selectedQuantity + action.payload.selectedQuantity <= itemInCart.sizes.filter((el)=>(el.size === itemInCart.selectedSize))[0]?.quantity){
+          itemInCart.selectedQuantity = Number(itemInCart.selectedQuantity) + Number(action.payload.selectedQuantity)
+        }
       } else {
         // state.cart.push({ ...action.payload.article, quantity: action.payload.quantity || 1})
-         state.cart.push({ ...action.payload.itemWithSizeAndQuantite.article, quantity: action.payload.itemWithSizeAndQuantite.quantity || 1, size:action.payload.itemWithSizeAndQuantite.size})
+         state.cart.push(action.payload)
       }
-      // console.log(typeof(action.payload.quantity,'rr'))
+      console.log(typeof(action.payload,'rr'))
     },
 
     decrementQuantity: (state, action) => {
@@ -40,22 +42,22 @@ const storeSlice = createSlice({
       // const item = state.cart.find((article) =>console.log(article.size,'comentaire'))
       
 
-       const item = state.cart.find((article) => article.id === action.payload.id && article.size===action.payload.size)
-        let quantity=Number(item.quantity)
-      if (item && quantity > 1) {
+       const item = state.cart.find((article) => article.id === action.payload.id && article.selectedSize===action.payload.selectedSize)
+        let quantity=Number(item.selectedQuantity)
+      if (item && quantity > 1 ) {
         console.log(typeof(quantity),'-------------')
         quantity -= 1
-        item.quantity=quantity
+        item.selectedQuantity=quantity
         
       }
     },
     incrementQuantity: (state, action) => {
-      const item = state.cart.find((article) => article.id === action.payload.id && article.size===action.payload.size)
-      let quantity=Number(item.quantity)
-      if (item) {
+      const item = state.cart.find((article) => article.id === action.payload.id && article.selectedSize===action.payload.selectedSize)
+      let quantity=Number(item.selectedQuantity)
+      if (item  && quantity+1 <= item.sizes.filter((el)=>(el.size === action.payload.selectedSize))[0]?.quantity) {
         console.log(typeof(quantity),'+++++++++++')
         quantity += 1
-        item.quantity=quantity
+        item.selectedQuantity=quantity
       }
     },
 
@@ -69,11 +71,11 @@ const storeSlice = createSlice({
 })
 
 export const selectCart = (state) => state.cart
-
+ 
 export const selectTotalPrice = (state) => {
   console.log(state.cart)
 
-  return state.cart.reduce((total, item) => total + Number(item.price) * Number(item.quantity), 0)
+  return state.cart.reduce((total, item) => total + Number(item.price) * Number(item.selectedQuantity), 0)
 }
 export const storeReducer = storeSlice.reducer
 export const { ToogleLike, addToCart, incrementQuantity, decrementQuantity, removeItem } =

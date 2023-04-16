@@ -27,7 +27,7 @@ function NavBar({ activePage}) {
   const cart = useSelector((state) => state.cart)
   const products = useSelector((state) => state.products)
   // console.log(cart, 'hello')
-  const itemCount = cart.reduce((total, item) => total + Number(item.quantity), 0)
+  const itemCount = cart.reduce((total, item) => total + Number(item.selectedQuantity), 0)
   // console.log(itemCount , '1')
   const favouriteCount = products.filter((item) => item.isFavourite === true).length 
   // console.log(favouriteCount,'count')

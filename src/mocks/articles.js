@@ -9,6 +9,7 @@ export const articles = [
     title: 'HOUSEMARK GRAPHIC TEE - T-shirt imprimé',
     price: '24.99',
     isFavourite: true,
+    sizes:[{size:'medium',quantity:60},{size:"large",quantity:10},{size:'xl',quantity:10}],
   },
   {
     id: '2',
@@ -20,6 +21,7 @@ export const articles = [
     title: 'Pantalon de survêtement',
     price: '49',
     isFavourite: true,
+    sizes:[{size:'medium',quantity:10},{size:"large",quantity:10},{size:'xl',quantity:10}],
   },
   {
     id: '3',
@@ -31,6 +33,7 @@ export const articles = [
     title: 'Pantalon de survêtement',
     price: '49',
     isFavourite: true,
+    sizes:[{size:'medium',quantity:10},{size:"large",quantity:10},{size:'xl',quantity:10}],
   },
   {
     id: '4',
@@ -42,6 +45,7 @@ export const articles = [
     title: 'Pantalon de survêtement',
     price: '49',
     isFavourite: true,
+    sizes:[{size:'medium',quantity:10},{size:"large",quantity:10},{size:'xl',quantity:10}],
   },
   {
     id: '5',
@@ -53,6 +57,7 @@ export const articles = [
     title: 'Pantalon de survêtement',
     price: '49',
     isFavourite: true,
+    sizes:[{size:'medium',quantity:10},{size:"large",quantity:10},{size:'xl',quantity:10}],
   },
   {
     id: '6',
@@ -64,6 +69,7 @@ export const articles = [
     title: 'Pantalon de survêtement',
     price: '49',
     isFavourite: false,
+    sizes:[{size:'medium',quantity:10},{size:"large",quantity:10},{size:'xl',quantity:10}],
   },
   {
     id: '7',
@@ -75,5 +81,6 @@ export const articles = [
     title: 'Pantalon de survêtement',
     price: '49',
     isFavourite: true,
+    sizes:[{size:'medium',quantity:60},{size:"large",quantity:10},{size:'xl',quantity:10}],
   },
 ]

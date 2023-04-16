@@ -14,4 +14,9 @@ export const sizes = [
     value: 'L',
     label: 'Large',
   },
+  {
+    id: 3,
+    value: 'XL',
+    label: 'XLarge',
+  },
 ]

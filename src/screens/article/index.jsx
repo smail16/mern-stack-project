@@ -7,8 +7,8 @@ import { Button as PanierButton, SelectInput } from 'design-system'
 // import { article } from 'mocks/article'
 // import { articles } from 'mocks/articles'
 import { images } from 'mocks/images'
-import { quantity } from 'mocks/quantity'
-import { sizes } from 'mocks/size'
+// import { quantity } from 'mocks/quantity'
+// import { sizes } from 'mocks/size'
 import React, { useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
@@ -44,30 +44,31 @@ function Article({ id }) {
   const products = useSelector((state) => state.products)
 
   // const [isDisabled, setisDisabled] = React.useState(true)
-  const [selectedSize, setSelectedSize] = React.useState('')
-  const [selectedQuantity, setSelectedQuantity] = React.useState('')
+  const [selectedSize, setSelectedSize] = React.useState(null)
+  const [selectedQuantity, setSelectedQuantity] = React.useState(null)
   const [article, setArticle] = React.useState(null)
+  const [cartArticle, setCartArticle] = useState(null)
   const params = useParams()
+  const dispatch = useDispatch()
   React.useEffect(() => {
     setArticle(products.filter((prod) => prod.id === params.id)[0])
   }, products)
-  // const handleAddToCart= ()=>{
-  //   const product={ selectedSize,selectedQuantity }
-  // }
-  const [itemWithSizeAndQuantite, setItemWithSizeAndQuantite] = useState({ size: '' , quantity:'0', article:products.filter((prod) => prod.id === params.id)[0]})
 
-  const handelChangeSize = (value)=>{
-    setSelectedSize(value)
-    setItemWithSizeAndQuantite((prevState) => ({ ...prevState, size: value  }))
-                  console.log(itemWithSizeAndQuantite,'aaaaaaaaaaaaaaaa')
+  const handleAddToCart = () => {
+    if (selectedSize && selectedQuantity && article) {
+      dispatch(addToCart({...article, selectedSize, selectedQuantity }))
+    }
   }
-  const handelChangeQuantity = (value)=>{
-    setSelectedQuantity(value)
-    setItemWithSizeAndQuantite((prevState) => ({ ...prevState, quantity: value  }))
-                  console.log(itemWithSizeAndQuantite,'aaaaaaaaaaaaaaaa')
-  }
+  // const handelChangeSize = (value)=>{
 
-  const dispatch = useDispatch()
+  const getQuantity = () => {
+    const quantityMax = article.sizes.filter((el) => el.size === selectedSize)[0]?.quantity
+    const QuantityArr = []
+    for (let i = 1; i < quantityMax + 1; i += 1) {
+      QuantityArr.push({ value: i, label: i, id: i })
+    }
+    return QuantityArr
+  }
   if (article) {
     return (
       <Container>
@@ -104,16 +105,17 @@ function Article({ id }) {
             </Typography>
             <Stack direction="row" spacing={3} mt={4}>
               <SelectInput
-                items={sizes}
+                items={article.sizes.map((el, i) => ({ value: el.size, label: el.size, id: i }))}
                 label="Taille"
-                onChange={(value) =>{handelChangeSize(value)}
-                  
-                }
+                onChange={(value) => {
+                  setSelectedSize(value)
+                }}
               />
               <SelectInput
                 label="Quantité"
-                items={quantity}
-                onChange={(value) => handelChangeQuantity(value)}
+                items={getQuantity()}
+                onChange={(value) => setSelectedQuantity(value)}
+                disabled={!selectedSize}
               />
             </Stack>
             <Stack direction="row" spacing={3} mt={4}>
@@ -122,7 +124,7 @@ function Article({ id }) {
                 variant="contained"
                 fullWidth
                 buttonText="Ajouter au panier"
-                onClick={() => dispatch(addToCart({ itemWithSizeAndQuantite }))}
+                onClick={() => handleAddToCart()}
               />
 
               <Button
