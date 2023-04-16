@@ -25,8 +25,7 @@ const settings = ['Mes commandes', 'Profile']
 
 function NavBar({ activePage }) {
   const cart = useSelector((state) => state.cart)
-  const store = useStore()
-  console.log(store.getState())
+  const { isAuth } = useStore().getState()
   const products = useSelector((state) => state.products)
   const itemCount = cart.reduce((total, item) => total + Number(item.selectedQuantity), 0)
   const favouriteCount = products.filter((item) => item.isFavourite === true).length
@@ -36,7 +35,6 @@ function NavBar({ activePage }) {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const theme = useTheme()
   const [isDrawerVisible, setIsDrawerVisible] = useState(false)
-  const isAuth = true
   const stylesNavBar = useCallback((isActiveItem) => styles(theme, isActiveItem), [theme])
 
   const RenderCategories = useCallback(
