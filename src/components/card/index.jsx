@@ -30,7 +30,6 @@ function CardModel({ article }) {
 
   const [isDisabled, setisDisabled] = React.useState(true)
 
-  console.log(article)
   return (
     <div>
       <Card

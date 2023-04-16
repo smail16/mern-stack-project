@@ -8,12 +8,13 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
 import { Button } from 'design-system'
+import { articles } from 'mocks/articles'
 import React, { useCallback, useMemo, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { IoIosMenu, IoMdClose } from 'react-icons/io'
+import { useSelector, useStore } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { articles } from 'mocks/articles'
-import { useSelector } from 'react-redux'
+
 import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
 import Basket from '../shoppingcard'
@@ -22,27 +23,21 @@ import { styles } from './styles'
 const pages = ['men', 'woman']
 const settings = ['Mes commandes', 'Profile']
 
-function NavBar({ activePage}) {
-  
+function NavBar({ activePage }) {
   const cart = useSelector((state) => state.cart)
+  const store = useStore()
+  console.log(store.getState())
   const products = useSelector((state) => state.products)
-  // console.log(cart, 'hello')
   const itemCount = cart.reduce((total, item) => total + Number(item.selectedQuantity), 0)
-  // console.log(itemCount , '1')
-  const favouriteCount = products.filter((item) => item.isFavourite === true).length 
-  // console.log(favouriteCount,'count')
-
-  
+  const favouriteCount = products.filter((item) => item.isFavourite === true).length
   const [isSigninVisible, setIsSigninVisible] = useState(false)
   const [isSignupVisible, setIsSignupVisible] = useState(false)
   const [isBasketVisible, setIsBasketVisible] = useState(false)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const isUserConnected = true
   const theme = useTheme()
   const [isDrawerVisible, setIsDrawerVisible] = useState(false)
-
+  const isAuth = true
   const stylesNavBar = useCallback((isActiveItem) => styles(theme, isActiveItem), [theme])
-  
 
   const RenderCategories = useCallback(
     () =>
@@ -64,14 +59,9 @@ function NavBar({ activePage}) {
 
   return (
     <>
-    
       <ModalSignin isOpen={isSigninVisible} onClickCloseIcon={() => setIsSigninVisible(false)} />
       <ModalSignup isOpen={isSignupVisible} onClickCloseIcon={() => setIsSignupVisible(false)} />
-      <Basket
-        
-        isOpen={isBasketVisible}
-        onClickCloseIcon={() => setIsBasketVisible(false)}
-      />
+      <Basket isOpen={isBasketVisible} onClickCloseIcon={() => setIsBasketVisible(false)} />
       <Box
         display="flex"
         alignItems="center"
@@ -80,7 +70,6 @@ function NavBar({ activePage}) {
         borderColor={theme.palette.grey.main}
         p={2}
       >
-        
         <Box display="flex" sx={stylesNavBar().leftSide}>
           <RenderCategories />
         </Box>
@@ -88,7 +77,7 @@ function NavBar({ activePage}) {
         <Box display="none" sx={stylesNavBar().iconMenu} onClick={() => setIsDrawerVisible(true)}>
           <IoIosMenu size={30} />
         </Box>
-        {isUserConnected ? (
+        {isAuth ? (
           <>
             <Box display="flex" alignItems="center">
               <Badge badgeContent={favouriteCount || '0'} color="primary">
@@ -100,9 +89,7 @@ function NavBar({ activePage}) {
                 color="primary"
                 onClick={() => setIsBasketVisible(true)}
               >
-                <AiOutlineShoppingCart size={30}/>
-                
-                
+                <AiOutlineShoppingCart size={30} />
               </Badge>
 
               <Avatar
@@ -158,7 +145,7 @@ function NavBar({ activePage}) {
               badgeContent={itemCount === 0 ? '0' : itemCount}
               color="primary"
             >
-              <AiOutlineShoppingCart size={30}/>
+              <AiOutlineShoppingCart size={30} />
             </Button>
           </Box>
         )}

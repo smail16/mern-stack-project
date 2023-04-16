@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Typography } from '@mui/material'
 import { Button, TextInput } from 'design-system'
+import { useAuth } from 'hooks'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
@@ -12,48 +13,52 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
     resolver: zodResolver(schema),
     defaultValues: {
       fullName: '',
-      email:'',
+      email: '',
       password: '',
-      confirmPassword:'',
-      phone:'',
-      address:'',
-      zip:'',
-      city:'',
+      confirmPassword: '',
+      phone: '',
+      address: '',
+      zip: '',
+      city: '',
     },
   })
 
-  const onSubmit = (data) => console.log(data)
-  const onError = (data) => console.log(data)
+  const { useRegisterUser } = useAuth()
+  const { mutate: registerUser, isLoading } = useRegisterUser()
+
+  const onSubmit = (data) => {
+    registerUser(data)
+  }
 
   return (
     <Modal title="S'inscrire" isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
-          <Controller
-            name="fullName"
-            control={control}
-            render={({ field, fieldState }) => (
-              <TextInput
-                type="text"
-                label="Nom et Prénom"
-                value={field.value}
-                onChange={field.onChange}
-                errorText={fieldState.error?.message}
-              />
-            )}
-          />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="fullName"
+          control={control}
+          render={({ field, fieldState }) => (
+            <TextInput
+              type="text"
+              label="Nom et Prénom"
+              value={field.value}
+              onChange={field.onChange}
+              errorText={fieldState.error?.message}
+            />
+          )}
+        />
         <Box mt={2}>
           <Controller
             name="email"
             control={control}
             render={({ field, fieldState }) => (
               <TextInput
-               type="email"
+                type="email"
                 label="Email"
                 value={field.value}
                 onChange={field.onChange}
                 errorText={fieldState.error?.message}
-             />
-           )}
+              />
+            )}
           />
         </Box>
         <Box mt={2}>
@@ -146,14 +151,10 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
             )}
           />
         </Box>
-    
 
         <Box mt={2} display="flex" justifyContent="center">
-          <Button type="submit" buttonText="s'inscrire" variant="contained" />
+          <Button isLoading={isLoading} type="submit" buttonText="s'inscrire" variant="contained" />
         </Box>
-        {/* <Typography variant="body1" align="center" mt={2}>
-          Mot de passe oublié ?
-        </Typography> */}
       </form>
     </Modal>
   )

@@ -1,17 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
-import './index.css'
 import { store } from 'redux/store'
+
+import './index.css'
 import App from './navigator'
 import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+const queryClient = new QueryClient()
+
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-          <App />
+        <App />
       </Provider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )
 

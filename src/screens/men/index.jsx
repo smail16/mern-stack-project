@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 function Men() {
   const cart = useSelector((state) => state.cart)
   const products = useSelector((state) => state.products)
-  console.log(products, 'AAAAAAAAAAAA')
   return (
     <div>
       <CardListe articles={products} />

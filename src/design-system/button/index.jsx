@@ -2,17 +2,17 @@ import { Typography } from '@mui/material'
 import Button from '@mui/material/Button'
 import React from 'react'
 
-function ButtonEl({ variant, buttonText, disabled = false, onClick, type, ...props }) {
+function ButtonEl({ variant, buttonText, isLoading, onClick, type, ...props }) {
   return (
     <Button
       {...props}
       variant={variant}
-      disabled={disabled}
+      disabled={isLoading}
       onClick={onClick}
       type={type}
       sx={{ boxShadow: 'none' }}
     >
-      <Typography variant="caption">{buttonText}</Typography>
+      <Typography variant="caption">{isLoading ? 'loading...' : buttonText}</Typography>
     </Button>
   )
 }

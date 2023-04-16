@@ -33,6 +33,7 @@ const reducer = (state = init, { type, payload }) => {
         loading: false,
         users: payload,
         errors: null,
+        isAuth: true,
       }
     case LOGIN_SUCCESS:
       return {
