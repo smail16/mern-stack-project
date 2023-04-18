@@ -70,13 +70,16 @@ const storeSlice = createSlice({
         state.cart.splice(index, 1)
       }
     },
+    
   },
 })
 
 export const selectCart = (state) => state.cart
 
-export const selectTotalPrice = (state) =>
-  state.cart.reduce((total, item) => total + Number(item.price) * Number(item.selectedQuantity), 0)
+//  export const selectTotalPrice = (state) =>  
+//  state.cart.reduce((total, item) => total + Number(item.price) * Number(item.selectedQuantity), 0)
+// 
+
 export const storeReducer = storeSlice.reducer
 export const { ToogleLike, addToCart, incrementQuantity, decrementQuantity, removeItem } =
   storeSlice.actions

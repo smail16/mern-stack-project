@@ -24,9 +24,12 @@ const pages = ['men', 'woman']
 const settings = ['Mes commandes', 'Profile']
 
 function NavBar({ activePage }) {
-  const cart = useSelector((state) => state.cart)
-  const { isAuth } = useStore().getState()
-  const products = useSelector((state) => state.products)
+  const cart = useSelector((state) => state.storeReducer.cart)
+  console.log(cart)
+  const isAuth =useSelector(state=>state.reducer.isAuth)
+  console.log(isAuth)
+  // const { isAuth } = useStore().getState()
+  const products = useSelector((state) => state.storeReducer.products)
   const itemCount = cart.reduce((total, item) => total + Number(item.selectedQuantity), 0)
   const favouriteCount = products.filter((item) => item.isFavourite === true).length
   const [isSigninVisible, setIsSigninVisible] = useState(false)

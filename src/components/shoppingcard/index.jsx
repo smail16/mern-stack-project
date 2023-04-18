@@ -8,8 +8,10 @@ import Modal from '../modal'
 import BasketItem from './basketItem'
 
 function Basket({ onClickCloseIcon, isOpen }) {
-  const cart = useSelector((state) => state.cart)
-  const totalPrice = useSelector(selectTotalPrice)
+  const cart = useSelector((state) => state.storeReducer.cart)
+  const totalPrice = cart.reduce((total, item) => total + Number(item.price) * Number(item.selectedQuantity), 0)
+  // const totalPrice = useSelector(selectTotalPrice)
+  // console.log(selectTotalPrice,'total')
 
   return (
     <Modal isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>

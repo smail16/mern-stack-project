@@ -33,7 +33,7 @@ const reducer = (state = init, { type, payload }) => {
         loading: false,
         users: payload,
         errors: null,
-        isAuth: true,
+        
       }
     case LOGIN_SUCCESS:
       return {
@@ -42,6 +42,7 @@ const reducer = (state = init, { type, payload }) => {
         errors: null,
         token: payload.token,
         users: payload.user,
+        isAuth: true,
       }
 
     case GET_PROFILE_SUCCESS:

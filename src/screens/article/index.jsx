@@ -40,8 +40,8 @@ const Caroussel = styled(Swiper)(({ theme }) => ({
 function Article({ id }) {
   const theme = useTheme()
 
-  const cart = useSelector((state) => state.cart)
-  const products = useSelector((state) => state.products)
+  const cart = useSelector((state) => state.storeReducer.cart)
+  const products = useSelector((state) => state.storeReducer.products)
 
   // const [isDisabled, setisDisabled] = React.useState(true)
   const [selectedSize, setSelectedSize] = React.useState(null)

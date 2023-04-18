@@ -1,4 +1,4 @@
-import { register } from 'api'
+import { login, register } from 'api'
 import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 
@@ -34,4 +34,25 @@ export const useAuth = () => {
     })
 
   return { useRegisterUser }
+}
+export const useLog = () => {
+  const dispatch = useDispatch()
+
+  const useLoginUser = () =>
+    useMutation(login, {
+      onSuccess: (response) => {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: response.data,
+        })
+      },
+      onError: (error) => {
+        dispatch({
+          type: LOGIN_FAIL,
+          payload: error.response.data,
+        })
+      },
+    })
+
+  return { useLoginUser }
 }

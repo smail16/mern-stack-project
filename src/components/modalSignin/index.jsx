@@ -5,6 +5,7 @@ import { Button, TextInput } from 'design-system'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
+import { useLog } from 'hooks'
 import Modal from '../modal'
 import { schema } from './config'
 
@@ -18,8 +19,10 @@ function ModalSignin({ isOpen, onClickCloseIcon }) {
       password: '',
     },
   })
+  const {useLoginUser} = useLog()
+  const { mutate: loginUser } = useLoginUser()
   
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {loginUser(data)}
   const onError = (data) => console.log(data)
 
   return (

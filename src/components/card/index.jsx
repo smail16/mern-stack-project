@@ -10,10 +10,11 @@ import { sizes } from 'mocks/size'
 import * as React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 import { ToogleLike, addToCart } from 'redux/Slice/Slice'
 
 function CardModel({ article }) {
-  const cart = useSelector((state) => state.cart)
+  const cart = useSelector((state) => state.storeReducer.cart)
   // console.log(cart,'cart')
   const dispatch = useDispatch()
   // const handleClick = () => {
@@ -32,6 +33,7 @@ function CardModel({ article }) {
 
   return (
     <div>
+      
       <Card
         className="mb-4 rounded"
         variant="outlined"
@@ -48,7 +50,7 @@ function CardModel({ article }) {
         <CardContent>
           <Typography variant="h6">{article.title}</Typography>
           <Typography variant="body1" color="text.secondary">
-            {article.price}
+            {article.price}€
           </Typography>
           {/* <PanierButton disabled={isDisabled} variant="contained" buttonText="Ajouter au panier" onClick={() => dispatch(addToCart({ article }))
         } /> 
