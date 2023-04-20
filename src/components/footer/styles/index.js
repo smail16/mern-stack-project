@@ -9,7 +9,7 @@ export const styles =  (theme) => ({
       color: theme.palette.primary.main,
     },
     socialIcon: {
-      marginRight: theme.spacing(1),
+      marginRight: theme.spacing(6),
       color: theme.palette.white.main,
       '&:hover': {
         color: theme.palette.secondary.main,

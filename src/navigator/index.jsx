@@ -2,7 +2,8 @@ import { ThemeProvider } from '@mui/material/styles'
 import { theme } from 'config'
 import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import { Article, Base, Home, Men, Profile, Woman } from 'screens'
+import { Article, Base, Home, Men, Pay, Profile, Woman } from 'screens'
+
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/article/:id" element={<Article />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Home />} />
+            <Route path="/pay" element={<Pay />} />
           </Route>
         </Routes>
       </Router>

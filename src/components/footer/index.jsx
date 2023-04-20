@@ -37,15 +37,17 @@ function Footer() {
     />,
   ]
   return (
-    <Box className={styleFooter.footer} color={theme.palette.primary.main}>
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={4}>
+    <Box className={styleFooter.footer} color={theme.palette.primary.main} padding={theme.spacing(10)} backgroundColor= {theme.palette.lightGrey.main}>
+      <Container maxWidth="lg" sm={6} md={4}>
+        <Grid container spacing={20}>
+          <Grid item xs={12} sm={6} md={4} spacing={10}>
             {/* Footer links */}
             <Typography variant="h6" gutterBottom>
-              About Us
+            <strong>
+            Qui sommes-nous :</strong>
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            
+            <Typography variant="body1" gutterBottom mt={3}>
               On est une marque à forte vocation internationale qui est née en 1994 dans le but
               d’habiller des jeunes soucieux de leur cadre de vie, qui vivent en communauté et
               communiquent entre eux. Des jeunes qui fuient les clichés et aiment se sentir à l’aise
@@ -58,26 +60,28 @@ function Footer() {
           <Grid item xs={12} sm={6} md={4}>
             {/* Contact information */}
             <Typography variant="h6" gutterBottom>
-              Contactez-nous
+              <strong>Contactez-nous :</strong>
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom mt={3}>
               Email: ismailfourati94@gmail.com
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom mt={3}>
               Phone: +33 06 29 50 87 27
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
             {/* Social media icons */}
-            <Typography variant="h6" gutterBottom>
-              Follow Us
+            <Typography variant="h6" gutterBottom >
+                 <strong>Suivez-nous :</strong>
             </Typography>
-            <div>
+            <div style={{"margin-top":"20px"}}>
               <Link
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styleFooter.socialIcon}
+                marginRight={theme.spacing(2)}
+            
               >
                 <BsFacebook />
               </Link>
@@ -86,6 +90,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styleFooter.socialIcon}
+                marginRight={theme.spacing(2)}
               >
                 <BsTwitter />
               </Link>
@@ -94,14 +99,15 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styleFooter.socialIcon}
+                marginRight={theme.spacing(2)}
               >
                 <BsInstagram />
               </Link>
 
 
-              <Typography variant="h6" gutterBottom mt={9}>
-                Les mode de paiments
-                <img key="icon1" src={PayImage} alt="" style={{ width: '150%' }} />
+              <Typography variant="h6" gutterBottom mt={13}>
+              <strong>Méthodes de paiement :</strong>
+                <img key="icon1" src={PayImage} alt="" style={{ width: '140%' , marginTop:'40px'}} />
               </Typography>
             </div>
           </Grid>

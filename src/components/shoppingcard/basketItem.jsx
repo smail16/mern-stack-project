@@ -27,7 +27,7 @@ function BasketItem({ article }) {
           <AiFillPlusCircle size={30} onClick={() => dispatch(incrementQuantity(article))} />
         </Stack>
         <Typography mt={2} color="text.secondary">
-         Quntité: {article.selectedQuantity}
+         Quantité: {article.selectedQuantity}
         </Typography>
         <Typography mt={2} color="text.secondary">
           Taille: {article.selectedSize}

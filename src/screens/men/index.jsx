@@ -10,7 +10,7 @@ function Men() {
     <div>
 
       <CardListe articles={products} />
-      <Basket />
+      {/* <Basket /> */}
       <Footer/>
       
     </div>

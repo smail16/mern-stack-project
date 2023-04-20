@@ -58,7 +58,7 @@ function ModalSignin({ isOpen, onClickCloseIcon }) {
         </Box>
 
         <Box mt={2} display="flex" justifyContent="center">
-          <Button type="submit" buttonText="se connecter" variant="contained" />
+          <Button type="submit" buttonText="se connecter" variant="contained"  onClick={onClickCloseIcon}/>
         </Box>
         <Typography variant="body1" align="center" mt={2}>
           Mot de passe oublié ?

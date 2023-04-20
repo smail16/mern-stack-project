@@ -153,7 +153,7 @@ function ModalSignup({ isOpen, onClickCloseIcon }) {
         </Box>
 
         <Box mt={2} display="flex" justifyContent="center">
-          <Button isLoading={isLoading} type="submit" buttonText="s'inscrire" variant="contained" />
+          <Button isLoading={isLoading} type="submit" buttonText="s'inscrire" variant="contained" onClick={onClickCloseIcon} />
         </Box>
       </form>
     </Modal>
