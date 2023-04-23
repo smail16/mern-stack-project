@@ -19,7 +19,7 @@ function BasketItem({ article }) {
           <Typography variant="body1" fontWeight="bold">
             {article.title}
           </Typography>
-          <AiFillDelete size={20} onClick={() => dispatch(removeItem(article.id))} />
+          <AiFillDelete size={20} onClick={() => dispatch(removeItem(article))} />
         </Box>
         <Stack direction="row" spacing={1} mt={2} display="flex" alignItems="center">
           <AiFillMinusCircle size={30} onClick={() => dispatch(decrementQuantity(article))} />

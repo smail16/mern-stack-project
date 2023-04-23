@@ -22,7 +22,7 @@ function Basket({ onClickCloseIcon, isOpen }) {
 
       <p>Total Price: {totalPrice.toFixed(2)}€</p>
 
-      <Link to ="/pay"><CommandeButton variant="contained" buttonText="Passer votre commande" onClick={onClickCloseIcon}/></Link>
+      <center><Link to ="/pay"><CommandeButton variant="contained" buttonText="Passer votre commande" onClick={onClickCloseIcon}/></Link></center>
     </Modal>
   )
 }

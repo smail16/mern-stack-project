@@ -1,18 +1,26 @@
+import { getAllArticles } from 'api'
 import { Basket, CardListe, Footer, NavBar } from 'components'
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addArticles } from 'redux/Slice/Slice'
 
 function Men() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getAllArticles().then((res) => {
+      dispatch(addArticles(res.data))
+    })
+  },[])
+
+
   const cart = useSelector((state) => state.storeReducercart)
   const products = useSelector((state) => state.storeReducer.products)
-  console.log(products)
+  const wishlist = useSelector((state) => state.storeReducer.wishlist)
   return (
     <div>
-
-      <CardListe articles={products} />
+      <CardListe articles={wishlist? products.filter((prod)=>prod.isFavourite) : products} />
       {/* <Basket /> */}
-      <Footer/>
-      
+      <Footer />
     </div>
   )
 }

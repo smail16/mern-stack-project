@@ -4,6 +4,7 @@ const {
   REGISTER_FAIL,
   LOGIN,
   LOGIN_FAIL,
+  LOG_OUT,
   LOGIN_SUCCESS,
   GET_PROFILE,
   GET_PROFILE_FAIL,
@@ -43,6 +44,16 @@ const reducer = (state = init, { type, payload }) => {
         token: payload.token,
         users: payload.user,
         isAuth: true,
+      }
+
+    case LOG_OUT:
+      return {
+        ...state,
+        loading: false,
+        errors: null,
+        token: null,
+        users: null,
+        isAuth: false,
       }
 
     case GET_PROFILE_SUCCESS:

@@ -12,8 +12,10 @@ import { articles } from 'mocks/articles'
 import React, { useCallback, useMemo, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { IoIosMenu, IoMdClose } from 'react-icons/io'
-import { useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { toogleWishList } from 'redux/Slice/Slice'
+import { logoutUser } from 'redux/actions'
 
 import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
@@ -26,7 +28,7 @@ const settings = ['Mes commandes', 'Profile']
 function NavBar({ activePage }) {
   const cart = useSelector((state) => state.storeReducer.cart)
   console.log(cart)
-  const isAuth =useSelector(state=>state.reducer.isAuth)
+  const isAuth = useSelector((state) => state.reducer.isAuth)
   console.log(isAuth)
   // const { isAuth } = useStore().getState()
   const products = useSelector((state) => state.storeReducer.products)
@@ -39,6 +41,8 @@ function NavBar({ activePage }) {
   const theme = useTheme()
   const [isDrawerVisible, setIsDrawerVisible] = useState(false)
   const stylesNavBar = useCallback((isActiveItem) => styles(theme, isActiveItem), [theme])
+  const dispatch = useDispatch()
+  const isWishList = useSelector((state) => state.storeReducer.wishlist)
 
   const RenderCategories = useCallback(
     () =>
@@ -58,6 +62,10 @@ function NavBar({ activePage }) {
     [activePage, stylesNavBar],
   )
 
+  const disconnect = () => {
+    dispatch(logoutUser())
+    window.location.replace('/')
+  }
   return (
     <>
       <ModalSignin isOpen={isSigninVisible} onClickCloseIcon={() => setIsSigninVisible(false)} />
@@ -81,8 +89,17 @@ function NavBar({ activePage }) {
         {isAuth ? (
           <>
             <Box display="flex" alignItems="center">
+              {/* <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => {
+                  dispatch(toogleWishList())
+                }}
+              >
+                {isWishList ? <AiFillHeart size={20} /> : <AiOutlineHeart size={20} />}
+              </Button> */}
               <Badge badgeContent={favouriteCount || '0'} color="primary">
-                <AiOutlineHeart size={30} />
+                <AiOutlineHeart size={30} onClick={()=>{dispatch(toogleWishList())}} />
               </Badge>
               <Badge
                 sx={{ width: 32, height: 32, marginLeft: '2rem' }}
@@ -123,7 +140,9 @@ function NavBar({ activePage }) {
               ))}
               <Divider />
               <MenuItem>
-                <Typography textAlign="center">Déconnexion</Typography>
+                <Typography onClick={() => disconnect()} textAlign="center">
+                  Déconnexion
+                </Typography>
               </MenuItem>
             </Menu>
           </>

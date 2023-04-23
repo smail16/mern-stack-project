@@ -3,12 +3,14 @@ import axios from 'axios'
 import { useMutation } from 'react-query'
 
 import {
+  GET_ALL_ARTICLES,
   GET_PROFILE,
   GET_PROFILE_FAIL,
   GET_PROFILE_SUCCESS,
   LOGIN,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  LOG_OUT,
   REGISTER,
   REGISTER_FAIL,
   REGISTER_SUCCESS,
@@ -31,6 +33,11 @@ export const loginUser = (user) => async (dispatch) => {
       payload: error.response.data,
     })
   }
+}
+export const logoutUser = () => async (dispatch) => {
+  dispatch({
+    type: LOG_OUT,
+  })
 }
 
 export const getProfile = () => async (dispatch) => {
@@ -56,6 +63,7 @@ export const getProfile = () => async (dispatch) => {
     })
   }
 }
+
 // const loginUser = (user) => async (dispatch) => {
 //   dispatch({
 //     type: LOGIN,

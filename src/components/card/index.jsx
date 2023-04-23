@@ -42,7 +42,11 @@ function CardModel({ article }) {
         <Box position="relative">
           <CardMedia sx={{ height: 320 }} image={article.images[0]} title={article.title} />
           <Box top={3} right={4} bgcolor="#FFFFFF" borderRadius={20} p="0.25" position="absolute">
-            <IconButton color="primary" onClick={() => dispatch(ToogleLike({ article }))}>
+            <IconButton color="primary" onClick={(e) =>{
+              e.stopPropagation()
+              e.preventDefault()
+              dispatch(ToogleLike({ article }))
+            } }>
               {article.isFavourite ? <AiFillHeart /> : <AiOutlineHeart />}
             </IconButton>
           </Box>

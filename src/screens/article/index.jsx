@@ -46,6 +46,7 @@ function Article({ id }) {
   // const [isDisabled, setisDisabled] = React.useState(true)
   const [selectedSize, setSelectedSize] = React.useState(null)
   const [selectedQuantity, setSelectedQuantity] = React.useState(null)
+  const [isLoading, setIsLoading] = React.useState(false)
   const [article, setArticle] = React.useState(null)
   const [cartArticle, setCartArticle] = useState(null)
   const params = useParams()
@@ -55,9 +56,12 @@ function Article({ id }) {
   }, products)
 
   const handleAddToCart = () => {
+    setIsLoading(true)
     if (selectedSize && selectedQuantity && article) {
       dispatch(addToCart({...article, selectedSize, selectedQuantity }))
+      setIsLoading(false)
     }
+    setIsLoading(false)
   }
   // const handelChangeSize = (value)=>{
 
@@ -101,7 +105,7 @@ function Article({ id }) {
               </Typography>
             </Box>
             <Typography mt={4} variant="h6">
-              {article.price}
+              {article.price} €
             </Typography>
             <Stack direction="row" spacing={3} mt={4}>
               <SelectInput
@@ -121,6 +125,7 @@ function Article({ id }) {
             <Stack direction="row" spacing={3} mt={4}>
               <PanierButton
                 disabled={!selectedQuantity || !selectedSize}
+                isLoading={isLoading}
                 variant="contained"
                 fullWidth
                 buttonText="Ajouter au panier"
