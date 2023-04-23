@@ -4,7 +4,6 @@ import React from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Article, Base, Home, Men, Pay, Profile, Woman } from 'screens'
 
-
 function App() {
   return (
     <ThemeProvider theme={theme}>

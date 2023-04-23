@@ -1,6 +1,6 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { store } from 'redux/store'
 
@@ -13,11 +13,12 @@ const queryClient = new QueryClient()
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider contextSharing client={queryClient}>
       <Provider store={store}>
         <App />
       </Provider>
     </QueryClientProvider>
+    ,
   </React.StrictMode>,
 )
 

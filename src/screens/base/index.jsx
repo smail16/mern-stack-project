@@ -9,7 +9,7 @@ function Base() {
     <>
       <NavBar activePage={location.pathname.replace('/', '')} />
       <Outlet />
-      
+      <Footer />
     </>
   )
 }

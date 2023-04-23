@@ -1,31 +1,23 @@
 import { getAllArticles } from 'api'
-import { useMutation } from 'react-query'
+import { useQuery } from 'react-query'
 import { useDispatch } from 'react-redux'
+import { addArticles } from 'redux/Slice/Slice'
 
-import {
-  GET_ALL_ARTICLES,
-  GET_ALL_FAIL,
-} from '../redux/actionTypes'
+import { GET_ALL_ARTICLES, GET_ALL_FAIL } from '../redux/actionTypes'
 
-
-export const useArticle = () => {
+export const useArticles = () => {
   const dispatch = useDispatch()
 
-  const useGetAll = () =>
-    useMutation(getAllArticles, {
+  const useGetAllArticles = () =>
+    useQuery(['getArticles'], getAllArticles, {
       onSuccess: (response) => {
-        dispatch({
-          type: GET_ALL_ARTICLES,
-          payload: response.data,
-        })
+        console.log(response)
+        dispatch(addArticles(response.data))
       },
       onError: (error) => {
-        dispatch({
-          type: GET_ALL_FAIL,
-          payload: error.response.data,
-        })
+        console.log('error')
       },
     })
 
-  return { useGetAll }
+  return { useGetAllArticles }
 }

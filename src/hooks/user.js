@@ -1,5 +1,5 @@
+import { useMutation } from '@tanstack/react-query'
 import { login, register } from 'api'
-import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 
 import {
@@ -38,9 +38,10 @@ export const useAuth = () => {
 export const useLog = () => {
   const dispatch = useDispatch()
 
-  const useLoginUser = () =>
+  const useLoginUser = (onClickCloseIcon) =>
     useMutation(login, {
       onSuccess: (response) => {
+        onClickCloseIcon()
         dispatch({
           type: LOGIN_SUCCESS,
           payload: response.data,

@@ -7,13 +7,12 @@ import Drawer from '@mui/material/Drawer'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Typography from '@mui/material/Typography'
-import { Button } from 'design-system'
+import { Button, Link } from 'design-system'
 import { articles } from 'mocks/articles'
 import React, { useCallback, useMemo, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { IoIosMenu, IoMdClose } from 'react-icons/io'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { toogleWishList } from 'redux/Slice/Slice'
 import { logoutUser } from 'redux/actions'
 
@@ -99,7 +98,12 @@ function NavBar({ activePage }) {
                 {isWishList ? <AiFillHeart size={20} /> : <AiOutlineHeart size={20} />}
               </Button> */}
               <Badge badgeContent={favouriteCount || '0'} color="primary">
-                <AiOutlineHeart size={30} onClick={()=>{dispatch(toogleWishList())}} />
+                <AiOutlineHeart
+                  size={30}
+                  onClick={() => {
+                    dispatch(toogleWishList())
+                  }}
+                />
               </Badge>
               <Badge
                 sx={{ width: 32, height: 32, marginLeft: '2rem' }}
@@ -133,11 +137,17 @@ function NavBar({ activePage }) {
               open={isMenuVisible}
               onClose={() => setIsMenuVisible(false)}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting}>
-                  <Typography textAlign="center">{setting}</Typography>
+              <Link to="/profile?tab=settings">
+                <MenuItem>
+                  <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
-              ))}
+              </Link>
+              <Link to="/profile?tab=order">
+                <MenuItem>
+                  <Typography textAlign="center">Mes commandes</Typography>
+                </MenuItem>
+              </Link>
+
               <Divider />
               <MenuItem>
                 <Typography onClick={() => disconnect()} textAlign="center">

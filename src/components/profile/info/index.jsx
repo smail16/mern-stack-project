@@ -1,21 +1,23 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Stack, Typography, styled } from '@mui/material'
 import { Button, TextInput } from 'design-system'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { AiOutlineUser } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 
 import { ButtonContainer, Section } from '../style'
 import { schema } from './config'
 
 function Info() {
   const [edit, setEdit] = useState(false)
+  const user = useSelector((state) => state.reducer.users)
 
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, reset } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      fullName: '',
-      phone: '',
+      fullName: user.fullName,
+      phone: user.phone,
     },
   })
 

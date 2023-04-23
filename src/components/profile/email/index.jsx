@@ -4,17 +4,19 @@ import { Button, TextInput } from 'design-system'
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { HiOutlineMail } from 'react-icons/hi'
+import { useSelector } from 'react-redux'
 
 import { ButtonContainer, Section } from '../style'
 import { schema } from './config'
 
 function Email() {
   const [edit, setEdit] = useState(false)
+  const user = useSelector((state) => state.reducer.users)
 
   const { handleSubmit, control } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: '',
+      email: user.email,
     },
   })
 

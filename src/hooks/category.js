@@ -1,5 +1,5 @@
-import { getAllCategories  } from 'api'
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
+import { getAllCategories } from 'api'
 import { useDispatch } from 'react-redux'
 
 import { GET_ALL_CATEGORIES, GET_ALL_CATEGORIES_FAIL } from '../redux/actionTypes'

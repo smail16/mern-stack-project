@@ -2,15 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Typography } from '@mui/material'
 import axios from 'axios'
 import { Button, TextInput } from 'design-system'
+import { useLog } from 'hooks'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
-import { useLog } from 'hooks'
-import { useArticle } from 'hooks/articles'
 import Modal from '../modal'
 import { schema } from './config'
-
-
 
 function ModalSignin({ isOpen, onClickCloseIcon }) {
   const { handleSubmit, control } = useForm({
@@ -20,21 +17,22 @@ function ModalSignin({ isOpen, onClickCloseIcon }) {
       password: '',
     },
   })
- 
 
+  const { useLoginUser } = useLog()
+  const { mutate: loginUser, isError } = useLoginUser(onClickCloseIcon)
 
-
-
-
-
-  const {useLoginUser} = useLog()
-  const { mutate: loginUser } = useLoginUser()
-  
-  const onSubmit = (data) => {loginUser(data)}
+  const onSubmit = (data) => {
+    loginUser(data)
+  }
   const onError = (data) => console.log(data)
 
   return (
     <Modal title="Se connecter" isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
+      {isError && (
+        <Typography mb={2} textAlign="center" color="error">
+          Veuillez vérifier vos coordoonnées
+        </Typography>
+      )}
       <form onSubmit={handleSubmit(onSubmit, onError)}>
         <Controller
           name="email"
@@ -66,7 +64,7 @@ function ModalSignin({ isOpen, onClickCloseIcon }) {
         </Box>
 
         <Box mt={2} display="flex" justifyContent="center">
-          <Button type="submit" buttonText="se connecter" variant="contained"  onClick={onClickCloseIcon}/>
+          <Button type="submit" buttonText="se connecter" variant="contained" />
         </Box>
         <Typography variant="body1" align="center" mt={2}>
           Mot de passe oublié ?
