@@ -21,15 +21,13 @@ import ModalSignup from '../modalSignup'
 import Basket from '../shoppingcard'
 import { styles } from './styles'
 
-const pages = ['men', 'woman']
+const pages = ['Homme', 'Femme']
 const settings = ['Mes commandes', 'Profile']
 
 function NavBar({ activePage }) {
   const cart = useSelector((state) => state.storeReducer.cart)
-  console.log(cart)
   const isAuth = useSelector((state) => state.reducer.isAuth)
-  console.log(isAuth)
-  // const { isAuth } = useStore().getState()
+ 
   const products = useSelector((state) => state.storeReducer.products)
   const itemCount = cart.reduce((total, item) => total + Number(item.selectedQuantity), 0)
   const favouriteCount = products.filter((item) => item.isFavourite === true).length
@@ -46,10 +44,11 @@ function NavBar({ activePage }) {
   const RenderCategories = useCallback(
     () =>
       pages.map((page, index) => (
-        <Link to={`/${page}`} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={`/${page}`} style={{ textDecoration: 'none', color: 'black',  }}>
           <Typography
+            font-weight="bold"
             textAlign="center"
-            mx={2}
+            mx={6}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             sx={stylesNavBar(page === activePage).categoryText}
@@ -151,7 +150,7 @@ function NavBar({ activePage }) {
               <Divider />
               <MenuItem>
                 <Typography onClick={() => disconnect()} textAlign="center">
-                  Déconnexion
+                  Me déconnecter
                 </Typography>
               </MenuItem>
             </Menu>

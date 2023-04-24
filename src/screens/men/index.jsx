@@ -12,12 +12,11 @@ function Men() {
     })
   }, [dispatch])
 
-  const cart = useSelector((state) => state.storeReducercart)
   const products = useSelector((state) => state.storeReducer.products)
   const wishlist = useSelector((state) => state.storeReducer.wishlist)
   return (
     <div>
-      <CardListe articles={wishlist ? products.filter((prod) => prod.isFavourite) : products} />
+      <CardListe articles={wishlist ? products.filter((prod) => prod.isFavourite && prod.categoryId === 0) : products.filter((prod) => prod.categoryId === 0)} />
     </div>
   )
 }

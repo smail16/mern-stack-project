@@ -11,7 +11,7 @@ export const useArticles = () => {
   const useGetAllArticles = () =>
     useQuery(['getArticles'], getAllArticles, {
       onSuccess: (response) => {
-        console.log(response)
+        
         dispatch(addArticles(response.data))
       },
       onError: (error) => {

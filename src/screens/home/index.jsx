@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <Box display="flex" overflow="hidden">
-      <Image href="/men" img={MenImage}>
+      <Image href="/homme" img={MenImage}>
         <Typography
           letterSpacing={20}
           textAlign="center"
@@ -24,7 +24,7 @@ function Home() {
           HOMME
         </Typography>
       </Image>
-      <Image href="/woman" img={GirlImage}>
+      <Image href="/femme" img={GirlImage}>
         <Typography
           letterSpacing={20}
           textAlign="center"

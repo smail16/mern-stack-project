@@ -5,18 +5,19 @@ import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { HiOutlineHome } from 'react-icons/hi'
 
+import { useSelector } from 'react-redux'
 import { ButtonContainer, Section } from '../style'
 import { schema } from './config'
 
 function Address({ address, onSave, onCancel, isNew = false }) {
   const [edit, setEdit] = useState(isNew)
-
+  const user = useSelector((state) => state.reducer.users)
   const { handleSubmit, control, reset } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      address: address?.address || '',
-      zip: address?.zip || '',
-      city: address?.city || '',
+      address: user.address.address,
+      zip: user.address.zip,
+      city: user.address.city,
     },
   })
 

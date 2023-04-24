@@ -1,13 +1,18 @@
+import { getAllArticles } from 'api'
 import { CardListe } from 'components'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addArticles } from 'redux/Slice/Slice'
 
 function Woman() {
-  const cart = useSelector((state) => state.storeReducercart)
+  
+
   const products = useSelector((state) => state.storeReducer.products)
+  const wishlist = useSelector((state) => state.storeReducer.wishlist)
+  // console.log(products.filter((prod) => prod.categoryId === 1),products.filter((prod) => prod.categoryId === "1"))
   return (
     <>
-      <CardListe articles={products} />
+      <CardListe articles={wishlist ? products.filter((prod) => prod.isFavourite && prod.categoryId === 1) : products.filter((prod) => prod.categoryId === 1)} />
     </>
   )
 }

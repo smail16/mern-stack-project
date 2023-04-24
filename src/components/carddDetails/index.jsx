@@ -42,14 +42,6 @@ function CardDetails() {
         </FormControl>
         <PanierButton variant="contained" buttonText="Ajouter au panier"> </PanierButton>
         <IconButton color="primary" aria-label="add to shopping cart" />
-        {/* <h3>
-          {' '}
-          Lets go for a
-          {' '}
-          <ProductionQuantityLimitsIcon/>
-          ?
-          {' '}
-        </h3> */}
       </div>
       <div className="description">
         <p>description</p>

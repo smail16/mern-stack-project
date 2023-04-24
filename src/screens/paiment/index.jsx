@@ -1,21 +1,18 @@
 import { Box, Grid, MenuItem, TextField, Typography } from '@mui/material'
 import PayImage from 'assets/pay.png'
-import { Achat, Basket } from 'components'
-import { Button as AchatButton, Button } from 'design-system'
+import { Achat } from 'components'
+import { Button as AchatButton } from 'design-system'
 import React, { useState } from 'react'
-import DatePicker from '@mui/lab/DatePicker'
-import { LocalizationProvider } from '@mui/lab'
+
+
 
 
 
 function Pay() {
-  // const cart = useSelector((state) => state.storeReducercart)
-  // const products = useSelector((state) => state.storeReducer.products)
-  // console.log(products)
+  
 
   const [userInfo, setUserInfo] = useState({
     name: '',
-    address: '',
     cardNumber: '',
     expirationMonth: '',
     expirationYear: '',
@@ -39,7 +36,19 @@ function Pay() {
   }
 
   const handleSubmit = () => {
-    setStep(3)
+    console.log(userInfo)
+    if (
+      userInfo.name &&
+      userInfo.cardNumber &&
+      userInfo.expirationMonth &&
+      userInfo.expirationYear &&
+      userInfo.cvc
+    ) {
+      setStep(2)
+    } else  {
+      alert("Veuillez remplir vos coordonnées bancaires.")
+  
+    }
   }
 
   return (
@@ -148,13 +157,15 @@ function Pay() {
               />
               
               <AchatButton
+                type='Submit'
                 variant="contained"
                 color="primary"
                 buttonText="Confirmer l’achat"
-                onClick={() => setStep(2)}
+                onClick={() => handleSubmit()}
               />
               <img key="icon1" src={PayImage} alt="" style={{ width: '50%', marginTop: '40px' }} />
             </div>
+            
             </>
           )}
           

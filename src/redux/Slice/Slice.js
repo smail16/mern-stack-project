@@ -17,7 +17,7 @@ const storeSlice = createSlice({
       }
     },
     addArticles:(state,action) =>{
-      // console.log(action.payload , 'payload')
+    
       // eslint-disable-next-line no-param-reassign
       state.products=action.payload
       
@@ -37,13 +37,13 @@ const storeSlice = createSlice({
             Number(itemInCart.selectedQuantity) + Number(action.payload.selectedQuantity)
         }
       } else {
-        // state.cart.push({ ...action.payload.article, quantity: action.payload.quantity || 1})
+        
         state.cart.push(action.payload)
       }
     },
 
     decrementQuantity: (state, action) => {
-      // const item = state.cart.find((article) =>console.log(article.size,'comentaire'))
+      
 
       const item = state.cart.find(
         (article) =>
@@ -70,9 +70,7 @@ const storeSlice = createSlice({
         item.selectedQuantity = quantity
       }
     },
-    // removeItem: (state, action) =>{
-    //    state.cart.filter(article => article.id !== action.payload)
-    // }
+    
     removeItem: (state, action) => {
       const index = state.cart.findIndex((article) => article.id === action.payload.id && article.selectedSize=== action.payload.selectedSize)      
       if (index !== -1) {
@@ -88,9 +86,6 @@ const storeSlice = createSlice({
 
 export const selectCart = (state) => state.cart
 
-//  export const selectTotalPrice = (state) =>
-//  state.cart.reduce((total, item) => total + Number(item.price) * Number(item.selectedQuantity), 0)
-//
 
 export const storeReducer = storeSlice.reducer
 export const { toogleWishList , addArticles, ToogleLike, addToCart, incrementQuantity, decrementQuantity, removeItem } =

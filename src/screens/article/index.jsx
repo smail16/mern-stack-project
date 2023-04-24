@@ -4,11 +4,7 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import { CardDetails, CardModel, NavBar } from 'components'
 import { Button as PanierButton, SelectInput } from 'design-system'
-// import { article } from 'mocks/article'
-// import { articles } from 'mocks/articles'
 import { images } from 'mocks/images'
-// import { quantity } from 'mocks/quantity'
-// import { sizes } from 'mocks/size'
 import React, { useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
@@ -63,7 +59,7 @@ function Article({ id }) {
     }
     setIsLoading(false)
   }
-  // const handelChangeSize = (value)=>{
+  
 
   const getQuantity = () => {
     const quantityMax = article.sizes.filter((el) => el.size === selectedSize)[0]?.quantity
@@ -142,9 +138,7 @@ function Article({ id }) {
             </Stack>
 
             <Typography mt={4} variant="body2">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore sequi quaerat nobis
-              dolor. Consequuntur modi velit aliquid, nisi quibusdam blanditiis asperiores facilis
-              obcaecati dolorum autem. In doloribus molestias commodi optio.
+              {article.description? article.description : ''}
             </Typography>
           </Grid>
         </Grid>

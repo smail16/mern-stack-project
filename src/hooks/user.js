@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { useMutation } from '@tanstack/react-query'
 import { login, register } from 'api'
 import { useDispatch } from 'react-redux'
