@@ -1,11 +1,11 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react'
-import { AiFillDelete, AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai'
+
 import { useDispatch } from 'react-redux'
-import { decrementQuantity, incrementQuantity, removeItem } from 'redux/Slice/Slice'
+
 
 function Recap({ article }) {
-  const dispatch = useDispatch()
+
   return (
     <div>
       <Box position="relative" display="flex">
@@ -21,7 +21,7 @@ function Recap({ article }) {
             <Typography variant="h6" fontWeight="bold">
               {article.title}
             </Typography>
-            <Typography variant="h6" mt={2}>
+            <Typography variant="body1" mt={2}>
               Quantité: {article.selectedQuantity}
             </Typography>
             <Typography variant="body1" mt={2}>

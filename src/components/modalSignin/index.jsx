@@ -1,11 +1,15 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Typography } from '@mui/material'
 import axios from 'axios'
 import { Button, TextInput } from 'design-system'
 import { useLog } from 'hooks'
-import React from 'react'
+import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
+import { Link } from 'react-router-dom'
+// eslint-disable-next-line import/no-cycle
+import { ModalSignup } from 'components'
 import Modal from '../modal'
 import { schema } from './config'
 
@@ -25,8 +29,10 @@ function ModalSignin({ isOpen, onClickCloseIcon }) {
     loginUser(data)
   }
   const onError = (data) => console.log(data)
-
+  const [isSignupVisible, setIsSignupVisible] = useState(false)
   return (
+    <>
+    <ModalSignup isOpen={isSignupVisible} onClickCloseIcon={() => setIsSignupVisible(false)} />
     <Modal title="Se connecter" isOpen={isOpen} onClickCloseIcon={onClickCloseIcon}>
       {isError && (
         <Typography mb={2} textAlign="center" color="error">
@@ -66,11 +72,15 @@ function ModalSignin({ isOpen, onClickCloseIcon }) {
         <Box mt={2} display="flex" justifyContent="center">
           <Button type="submit" buttonText="se connecter" variant="contained" />
         </Box>
+        <Link onClick={() => setIsSignupVisible(true)} ><Typography  variant="body1" align="center" mt={2} style={{ textDecoration: 'none', color: 'black',  }}>
+          S’inscrire
+        </Typography></Link>
         <Typography variant="body1" align="center" mt={2}>
           Mot de passe oublié ?
         </Typography>
       </form>
     </Modal>
+    </>
   )
 }
 export default ModalSignin

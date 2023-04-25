@@ -16,6 +16,7 @@ import { useDispatch, useSelector, useStore } from 'react-redux'
 import { toogleWishList } from 'redux/Slice/Slice'
 import { logoutUser } from 'redux/actions'
 
+// eslint-disable-next-line import/no-cycle
 import ModalSignin from '../modalSignin'
 import ModalSignup from '../modalSignup'
 import Basket from '../shoppingcard'
@@ -40,7 +41,7 @@ function NavBar({ activePage }) {
   const stylesNavBar = useCallback((isActiveItem) => styles(theme, isActiveItem), [theme])
   const dispatch = useDispatch()
   const isWishList = useSelector((state) => state.storeReducer.wishlist)
-
+  
   const RenderCategories = useCallback(
     () =>
       pages.map((page, index) => (
@@ -48,7 +49,7 @@ function NavBar({ activePage }) {
           <Typography
             font-weight="bold"
             textAlign="center"
-            mx={6}
+            mx={3}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
             sx={stylesNavBar(page === activePage).categoryText}

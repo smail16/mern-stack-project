@@ -38,7 +38,7 @@ function Article({ id }) {
 
   const cart = useSelector((state) => state.storeReducer.cart)
   const products = useSelector((state) => state.storeReducer.products)
-
+  const isAuth = useSelector((state) => state.reducer.isAuth)
   // const [isDisabled, setisDisabled] = React.useState(true)
   const [selectedSize, setSelectedSize] = React.useState(null)
   const [selectedQuantity, setSelectedQuantity] = React.useState(null)
@@ -51,15 +51,29 @@ function Article({ id }) {
     setArticle(products.filter((prod) => prod.id === params.id)[0])
   }, products)
 
+  // const handleAddToCart = () => {
+  //   setIsLoading(true)
+  //   if (selectedSize && selectedQuantity && article) {
+  //     dispatch(addToCart({ ...article, selectedSize, selectedQuantity }))
+  //     setIsLoading(false)
+  //   }
+  //   setIsLoading(false)
+  // }
   const handleAddToCart = () => {
     setIsLoading(true)
-    if (selectedSize && selectedQuantity && article) {
-      dispatch(addToCart({...article, selectedSize, selectedQuantity }))
-      setIsLoading(false)
+  
+    if (isAuth) {
+      if (selectedSize && selectedQuantity && article) {
+        dispatch(addToCart({ ...article, selectedSize, selectedQuantity }))
+        setIsLoading(false)
+      }
+    } else {
+      // Afficher un rappel pour se connecter ou s'inscrire
+      alert("Veuillez vous connecter ou vous inscrire pour ajouter un article au panier!")
     }
+  
     setIsLoading(false)
   }
-  
 
   const getQuantity = () => {
     const quantityMax = article.sizes.filter((el) => el.size === selectedSize)[0]?.quantity
@@ -127,7 +141,7 @@ function Article({ id }) {
                 buttonText="Ajouter au panier"
                 onClick={() => handleAddToCart()}
               />
-
+              *
               <Button
                 variant="outlined"
                 color="primary"
@@ -138,7 +152,7 @@ function Article({ id }) {
             </Stack>
 
             <Typography mt={4} variant="body2">
-              {article.description? article.description : ''}
+              {article.description ? article.description : ''}
             </Typography>
           </Grid>
         </Grid>
